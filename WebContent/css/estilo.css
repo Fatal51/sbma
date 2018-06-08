@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css?family=Viga');
+
+@font-face{
+	src: url(../fonts/Roboto-Regular.ttf);
+	font-family: 'roboto';
+}
+
+:root {
+  --primaria: #6DBC51;
+  --secundaria: #35e139;
+  --terciaria: #000000;
+  --fundo-1: #9f9d9d;
+  --fundo-2: #f2f2f2;
+}
+
+
+body{
+	font-family: 'roboto';
+	background-color: var(--fundo-1) !important;
+}
+/* menu*/
+nav#menu{
+	background-color:var(--terciaria) !important;
+}
+
+footer#rodape{
+
+	background-color:var(--terciaria) !important;
+	width: 100%;
+
+}
+
+.titulo1{
+	font-family: 'Viga';
+	font-size: 2rem;
+	font-weight: 500;
+	color: var(--primaria) !important;
+}
+
+.titulo1:hover{
+	color: #fff;
+
+}
+
+.menulink{
+	font-size: 1.2rem;
+	color:#fff;
+}
+
+.menulink:hover{
+	color:#fff;
+}
+
+.bareffect li a::after,
+.bareffect li a::before{
+	content: '';
+	position: absolute;
+	left: 0;
+	width: 100%;
+	height: 2px;
+	background-color: #fff;
+	opacity: 0;
+	transition: opacity 0.5s, transform 0.3s;
+}
+
+.bareffect li a:hover::before,
+.bareffect li a:hover::after{
+	opacity: 1;
+	transform: translateY(0px);
+}
+
+.bareffect li a::before{
+	top:0;
+	transform:translateY(10px);
+}
+
+.bareffect li a::after{
+	bottom:0;
+	transform: translateY(-10px);
+}
+
+input[type="search"],
+input[type="search"]:focus{
+	background-color: transparent;
+}
+
+input[type="search"]::placeholder{
+	color: #fff;
+}
+
+.fa-bars{
+	color: #fff;
+	border: 2px solid #fff;
+	border-radius: 5px;
+	padding: 5px;
+	cursor: pointer;
+}
+
+.float-left{
+	float: right;
+}
+
+/*menu*/
+
+@media screen and (max-width: 1024px){
+	.bareffect li a::after,
+	.bareffect li a::before{
+		width: 25%;
+	}
+}
+
+@media screen and (max-width: 576px){
+	.bareffect li a::after,
+	.bareffect li a::before{
+		width: 90%;
+	}
+}
+

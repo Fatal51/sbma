@@ -21,7 +21,7 @@ public class Upload extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
 		String pastaProjeto = getServletContext().getRealPath("");
-		
+		 
 		String salvarDocument = pastaProjeto + File.separator +"WEB-INF" + File.separator +"documentos";
 		
 		File pasta = new File(salvarDocument);

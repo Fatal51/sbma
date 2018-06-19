@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import br.edu.ifsuldeminas.mch.model.Usuario;
 import br.edu.ifsuldeminas.mch.model.bancoDeDados.DAOFactory;
 import br.edu.ifsuldeminas.mch.model.bancoDeDados.ModelException;
-import br.edu.ifsuldeminas.mch.model.bancoDeDados.dao.UsuarioDAO;
+import br.edu.ifsuldeminas.mch.model.bancoDeDados.UsuarioDAO;
 
 
 @SuppressWarnings("serial")

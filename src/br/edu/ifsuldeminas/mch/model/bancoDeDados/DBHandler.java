@@ -26,6 +26,7 @@ public class DBHandler {
 			throw new ModelException("Erro ao preparar a SQL", e);
 		}
 	}
+	
 
 	public void setString(int i, String value) throws ModelException {
 		validatePreparedStatement();

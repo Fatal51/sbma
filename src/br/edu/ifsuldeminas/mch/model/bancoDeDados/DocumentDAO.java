@@ -85,6 +85,92 @@ public List<Documento> documentos(int indice) throws ModelException {
 	return lista;
 }
 
+public List<Documento> documentosAutor(int indice,String autor) throws ModelException {
+	
+	DBHandler db = new DBHandler();
+	
+	db.prepareStatement("SELECT * FROM documentos where autores LIKE '%"+
+	autor+"%' LIMIT ? , 16 ;");
+
+	db.setInt(1, indice);
+	
+	db.executeQuery();
+	
+	List<Documento> lista = new ArrayList<>();
+	
+	while(db.next()) {
+		
+		lista.add(criaDocumento(db));
+	}
+	
+	return lista;
+}
+
+public List<Documento> documentosTitulo(int indice,String titulo) throws ModelException {
+	
+	DBHandler db = new DBHandler();
+	
+	db.prepareStatement("SELECT * FROM documentos where titulo LIKE '%"+
+	titulo+"%' LIMIT ? , 16 ;");
+
+	db.setInt(1, indice);
+	
+	db.executeQuery();
+	
+	List<Documento> lista = new ArrayList<>();
+	
+	while(db.next()) {
+		
+		lista.add(criaDocumento(db));
+	}
+	
+	return lista;
+}
+
+public List<Documento> documentosSubTitulo(int indice,String subTitulo) throws ModelException {
+	
+	DBHandler db = new DBHandler();
+	
+	db.prepareStatement("SELECT * FROM documentos where sub_titulo LIKE '%"+
+	subTitulo+"%' LIMIT ? , 16 ;");
+
+	db.setInt(1, indice);
+	
+	db.executeQuery();
+	
+	List<Documento> lista = new ArrayList<>();
+	
+	while(db.next()) {
+		
+		lista.add(criaDocumento(db));
+	}
+	
+	return lista;
+}
+
+public List<Documento> documentosOrientadores(int indice,String orientador,String coOrientador) throws ModelException {
+	
+	DBHandler db = new DBHandler();
+	
+	db.prepareStatement("SELECT * FROM documentos where orientador LIKE '%"+
+	orientador+"%' OR co_orientador LIKE '%" + coOrientador  
+			+"%'+ LIMIT ? , 16 ;");
+
+	db.setInt(1, indice);
+	
+	db.executeQuery();
+	
+	List<Documento> lista = new ArrayList<>();
+	
+	while(db.next()) {
+		
+		lista.add(criaDocumento(db));
+	}
+	
+	return lista;
+}
+
+
 private Documento criaDocumento(DBHandler db) throws ModelException {
 	
 	Documento doc = new Documento();

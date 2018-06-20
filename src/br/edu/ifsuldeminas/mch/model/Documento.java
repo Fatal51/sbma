@@ -14,6 +14,7 @@ public class Documento {
 	private int subArea;
 	private String resumo;
 	private String caminho;
+	private int codigo;
 	
 	public String getAutores() {
 		return autores;
@@ -86,6 +87,12 @@ public class Documento {
 	}
 	public void setCaminho(String caminho) {
 		this.caminho = caminho;
+	}
+	public int getCodigo() {
+		return codigo;
+	}
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
 	}
 	
 	

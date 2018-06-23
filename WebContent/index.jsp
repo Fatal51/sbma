@@ -7,7 +7,7 @@
 		</article>
 		<nav class="row pt-3 bg-dark navbar-dark">
 			<div class="form-group col-12 text-center">
-				<h2 class="titulo2 text-light">Pesquise por Autores, tutulos, datas.</h2>
+				<h2 class="titulo2 text-light">Pesquise por Autores, títulos, datas.</h2>
 			</div>
 			<div class="form-group justify-content-center ml-auto mr-auto">
 				<form class="form-inline" action="list.html">

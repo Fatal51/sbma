@@ -16,7 +16,7 @@ public class UsuarioDAO implements ObjectDAO<Usuario> {
 	
 	db.prepareStatement(sql);
 	
-	db.setString(1, u.getLogin());
+	db.setString(1,u.getLogin());
 		
 	db.executeQuery();
 	

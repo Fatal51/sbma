@@ -6,6 +6,8 @@ import java.util.List;
 import br.edu.ifsuldeminas.mch.model.Documento;
 
 public class DocumentDAO {
+	
+	private int numeroRegistros;
 
 
 	public boolean save(Documento documento) throws ModelException {
@@ -98,8 +100,10 @@ public List<Documento> documentosAutor(int indice,String autor) throws ModelExce
 	
 	List<Documento> lista = new ArrayList<>();
 	
+	this.numeroRegistros = 0;
+	
 	while(db.next()) {
-		
+		this.numeroRegistros++;
 		lista.add(criaDocumento(db));
 	}
 	
@@ -118,9 +122,11 @@ public List<Documento> documentosTitulo(int indice,String titulo) throws ModelEx
 	db.executeQuery();
 	
 	List<Documento> lista = new ArrayList<>();
+	this.numeroRegistros=0;
 	
 	while(db.next()) {
 		
+		this.numeroRegistros++;
 		lista.add(criaDocumento(db));
 	}
 	
@@ -139,9 +145,9 @@ public List<Documento> documentosSubTitulo(int indice,String subTitulo) throws M
 	db.executeQuery();
 	
 	List<Documento> lista = new ArrayList<>();
-	
+	this.numeroRegistros = 0;
 	while(db.next()) {
-		
+		this.numeroRegistros++;
 		lista.add(criaDocumento(db));
 	}
 	
@@ -161,9 +167,65 @@ public List<Documento> documentosOrientadores(int indice,String orientador,Strin
 	db.executeQuery();
 	
 	List<Documento> lista = new ArrayList<>();
+	this.numeroRegistros=0;
 	
 	while(db.next()) {
-		
+		this.numeroRegistros++;
+		lista.add(criaDocumento(db));
+	}
+	
+	return lista;
+}
+
+public List<Documento> buscaAvancada(Documento documento,int indice) throws ModelException{
+	
+	String sql = "SELECT * FROM documentos where caminho !=''";
+	
+	if(!documento.getAutores().isEmpty()) {
+		sql += " AND autores LIKE '%"+documento.getAutores()+"%'";
+	}
+	if(!documento.getOrientador().isEmpty()) {
+		sql += " AND orientador LIKE '%"+documento.getOrientador()+"%'";
+	}
+	if(!documento.getCo_orientador().isEmpty()) {
+		sql += " AND co_orientador LIKE '%"+documento.getCo_orientador()+"%'";
+	}
+	if(!documento.getTitulo().isEmpty()) {
+		sql += " AND titulo LIKE '%"+documento.getTitulo()+"%'";
+	}
+	if(!documento.getSub_titulo().isEmpty()) {
+		sql += " AND sub_titulo LIKE '%"+documento.getSub_titulo()+"%'";
+	}
+	if(!documento.getPalavrasChaves().isEmpty()) {
+		sql += " AND palavras_chaves LIKE '%"+documento.getPalavrasChaves()+"%'";
+	}
+	if(!documento.getResumo().isEmpty()) {
+		sql += " AND resumo LIKE '%"+documento.getResumo()+"%'";
+	}
+	if(documento.getSubArea()!=0) {
+		sql += " AND sub_area = "+documento.getSubArea();
+	}
+	if(documento.getTipo()!=0) {
+		sql += " AND tipo = "+documento.getTipo();
+	}
+	if(!documento.getDataDefesa().isEmpty()) {
+		sql += " AND data_defesa >= "+documento.getDataDefesa();
+	}
+
+	sql+=" LIMIT ? , 16 ;";
+	
+	DBHandler db = new DBHandler();
+	
+	db.prepareStatement(sql);
+	db.setInt(1, indice);
+	
+	db.executeQuery();
+	
+	List<Documento> lista = new ArrayList<>();
+	this.numeroRegistros=0;
+	
+	while(db.next()) {
+		this.numeroRegistros++;
 		lista.add(criaDocumento(db));
 	}
 	
@@ -191,5 +253,10 @@ private Documento criaDocumento(DBHandler db) throws ModelException {
 	
 	return doc;
 }
+
+public int getNumeroRegistros() {
+	return numeroRegistros;
+}
+
 
 }

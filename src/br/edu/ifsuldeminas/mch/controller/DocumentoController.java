@@ -13,25 +13,95 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import br.edu.ifsuldeminas.mch.model.Documento;
+import br.edu.ifsuldeminas.mch.model.bancoDeDados.DocumentDAO;
+import br.edu.ifsuldeminas.mch.model.bancoDeDados.ModelException;
 
 
 
-@WebServlet(urlPatterns = {"/document/save","/document/update","/document/delete","/document/insert"})
+@WebServlet(urlPatterns = {"/document/save","/document/update","/document/delete","/document/insert","/document/form","/document/list","/document/buscar","/document/proximo","/document/anterior"})
 @MultipartConfig
 public class DocumentoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	
+	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
 		String action = req.getRequestURI();
 		
+		
+		
 		switch (action) {
-		case "/Intersect/user/form":
+		case "/sbma/document/save":
+			if(salva(req, res)) {
+			
+				ControllerUtil.sucessMessage(req, "Salvo com sucesso!");
+				
+				ControllerUtil.redirect(res, req.getContextPath() + "/index.jsp");
+			}else {
+				ControllerUtil.errorMessage(req, "Erro ao salvar!");
+				
+				ControllerUtil.redirect(res, req.getContextPath() + "/index.jsp");
+			}
+		break;
 		
-		ControllerUtil.sucessMessage(req, "Salvo com sucesso!");
+		}
 		
-		ControllerUtil.redirect(res, req.getContextPath() + "/index.jsp");
 		
+	}
+	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		
+		String action = req.getRequestURI();
+		
+		switch (action) {
+		case "/sbma/document/form":
+			req.setAttribute("action", "save");
+			
+			ControllerUtil.redirect(res, req.getContextPath() + "/index.jsp");
+		break;
+		
+		case "/sbma/document/list":
+			DocumentDAO docs = new DocumentDAO();
+			try {
+				req.getSession().setAttribute("documentos",docs.documentos(0));
+			} catch (ModelException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			ControllerUtil.redirect(res, req.getContextPath() + "/list.jsp");
+		break;
+		
+		case "/sbma/document/buscar":
+			
+			removePaginacao(req);
+			BuscaToRequest(0,req,req.getParameter("tipo_busca"),req.getParameter("busca"));
+			
+	
+			ControllerUtil.redirect(res, req.getContextPath() + "/list.jsp");
+		break;
+		
+		case "/sbma/document/proximo":
+			
+			proximo(req);
+			
+	
+			ControllerUtil.redirect(res, req.getContextPath() + "/list.jsp");
+		break;
+		
+		case "/sbma/document/anterior":
+			
+			
+			anterior(req);
+	
+			ControllerUtil.redirect(res, req.getContextPath() + "/list.jsp");
+		break;
+		
+		
+		default:
+			
+			ControllerUtil.errorMessage(req, "não e possivel realizar essa acao");
+			ControllerUtil.redirect(res,req.getContextPath() +  "/index.jsp");
 		break;
 		
 		}
@@ -46,7 +116,7 @@ public class DocumentoController extends HttpServlet {
 		UUID uuid = UUID.randomUUID();
 		String myRandom = uuid.toString();
 		
-		String salvarDocument = pastaProjeto + File.separator +"WEB-INF" + File.separator +"documentos";
+		String salvarDocument = pastaProjeto  + File.separator +"documentos";
 		
 		File pasta = new File(salvarDocument);
 		
@@ -54,31 +124,41 @@ public class DocumentoController extends HttpServlet {
 			pasta.mkdirs();
 		} 
 		
+		Documento doc = geraDocumento(req);
+		doc.setCaminho(myRandom+".pdf");
+		DocumentDAO docDao = new DocumentDAO();
 		
-		Part arquivo;
+		
 		try {
-			arquivo = req.getPart("documento");
-			arquivo.write(salvarDocument + File.separator + arquivo.getSubmittedFileName());
-		} catch (IOException | ServletException e) {
+			if(docDao.save(doc)) {
+			Part arquivo;
+			try {
+				arquivo = req.getPart("documeto");
+				arquivo.write(salvarDocument + File.separator + doc.getCaminho());
+				
+				return true;
+			} catch (IOException | ServletException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			}  
+		} catch (ModelException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		
-		
-		
-		return true;
+	
+		return false;
 	}
 	
-	private Documento geraDocumento(HttpServletRequest req,HttpServletResponse res) {
+	private Documento geraDocumento(HttpServletRequest req) {
 		Documento doc = new Documento();
 		
 		doc.setAutores(req.getParameter("autores"));
 		doc.setCo_orientador(req.getParameter("co_orientador"));
-		doc.setDataDefesa(req.getParameter("data"));
+		doc.setDataDefesa(req.getParameter("data_defesa"));
 		doc.setOrientador(req.getParameter("orientador"));
-		doc.setPalavrasChaves(req.getParameter("palavras"));
+		doc.setPalavrasChaves(req.getParameter("palavras_chaves"));
 		doc.setResumo(req.getParameter("resumo"));
 		doc.setSub_titulo(req.getParameter("sub_titulo"));
 		doc.setTipo(Integer.valueOf(req.getParameter("tipo")));
@@ -88,5 +168,113 @@ public class DocumentoController extends HttpServlet {
 		return doc;
 		
 	}
+	
+	private void adicionaBuscaToRequest(int index,HttpServletRequest req,String tipo,String busca) {
+		
+		DocumentDAO docs = new DocumentDAO();
+		
+		switch (tipo) {
+	
+		case "autor":
+			
+			try {
+				
+				req.getSession().setAttribute("documentos",docs.documentosAutor(index, busca));
+				
+			} catch (ModelException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			break;
+
+		default:
+			
+			
+			break;
+		}
+
+		
+	
+	}
+	
+private void BuscaToRequest(int index,HttpServletRequest req,String tipo,String busca) {
+		
+		DocumentDAO docs = new DocumentDAO();
+		
+		switch (tipo) {
+	
+		case "autor":
+			
+			try {
+				
+				req.getSession().setAttribute("documentos",docs.documentosAutor(index, busca));
+			
+					preparaPaginacao(req, docs);
+			} catch (ModelException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			break;
+
+		default:
+			
+			
+			break;
+		}
+
+		
+	
+	}
+	
+	private void proximo(HttpServletRequest req) {
+		
+		
+		int index = (int)req.getSession().getAttribute("paginaAtual");
+		
+		adicionaBuscaToRequest(index * 15,req,(String)req.getSession().getAttribute("tipo_busca"),(String)req.getSession().getAttribute("buscar"));
+
+		req.getSession().setAttribute("paginaAtual",index+1);
+	}
+	
+	private void anterior(HttpServletRequest req) {
+		
+		int index = (int)req.getSession().getAttribute("paginaAtual");
+		
+		adicionaBuscaToRequest((index-1) * 15,req,(String)req.getSession().getAttribute("tipo_busca"),(String)req.getSession().getAttribute("buscar"));
+		
+		req.getSession().setAttribute("paginaAtual",index-1);
+	}
+	
+	private void preparaPaginacao(HttpServletRequest req,DocumentDAO d) {
+		
+		
+		if(d.getNumeroRegistros()%15==0)
+			req.getSession().setAttribute("paginas",d.getNumeroRegistros()/15);
+		else
+			req.getSession().setAttribute("paginas",d.getNumeroRegistros()/15+1);
+		
+		req.getSession().setAttribute("resultados",d.getNumeroRegistros());
+		req.getSession().setAttribute("paginaAtual",1);
+		req.getSession().setAttribute("tipo_busca",req.getParameter("tipo_busca"));
+		req.getSession().setAttribute("buscar",req.getParameter("busca"));
+
+		
+	
+	}
+	
+	private void removePaginacao(HttpServletRequest req) {
+		
+		
+		req.getSession().removeAttribute("paginas");
+		req.getSession().removeAttribute("resultados");
+		req.getSession().removeAttribute("paginaAtual");
+	
+		
+		}
+		
+	
+	
 
 }

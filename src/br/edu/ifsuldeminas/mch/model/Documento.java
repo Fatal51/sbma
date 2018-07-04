@@ -95,7 +95,13 @@ public class Documento {
 		this.codigo = codigo;
 	}
 	
-	
-	
+	public String dataSerta() {
+		return reverse(dataDefesa);
+	}
+	private  String reverse (String o) {
 
+	    String[] pedacos = o.split("-");
+    
+	   return pedacos[2]+"/"+pedacos[1]+"/"+pedacos[0];
+	}
 }

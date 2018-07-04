@@ -112,9 +112,16 @@ orientador = 'teste' , co_orientador = 'teste' , tipo = 2 , palavras_chaves = 't
 data_defesa = '2015-01-01' , sub_area = 1 , resumo = 'teste' , caminho = 'teste' where codigo = 3 ;
 
 
+
+
+
+SELECT * FROM documentos where autores LIKE '%mar%' limit 45,15;
+
+
+
 DELETE from documentos where codigo = 3;
 
-SELECT * FROM documentos  LIMIT 0 , 30;
+SELECT COUNT(*) FROM documentos  where autores LIKE '%mar%';
 
 
 

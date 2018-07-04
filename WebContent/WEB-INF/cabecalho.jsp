@@ -79,3 +79,10 @@
 			</div>
 
 		</nav>
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalDocumento">
+  Open modal
+</button>
+
+<a type="button" class="btn btn-primary" href="${pageContext.request.contextPath}/document/list">
+  Open modal
+</a>

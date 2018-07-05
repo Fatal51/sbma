@@ -40,10 +40,10 @@ public class Documento {
 	public void setOrientador(String orientador) {
 		this.orientador = orientador;
 	}
-	public String getCo_orientador() {
+	public String getCoOrientador() {
 		return co_orientador;
 	}
-	public void setCo_orientador(String co_orientador) {
+	public void setCoOrientador(String co_orientador) {
 		this.co_orientador = co_orientador;
 	}
 	public String getTitulo() {
@@ -52,10 +52,10 @@ public class Documento {
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
-	public String getSub_titulo() {
+	public String getSubTitulo() {
 		return sub_titulo;
 	}
-	public void setSub_titulo(String sub_titulo) {
+	public void setSubTitulo(String sub_titulo) {
 		this.sub_titulo = sub_titulo;
 	}
 	public int getTipo() {

@@ -24,6 +24,10 @@
 					  <label for="sel1">Select list:</label>
 					  <select class="form-control" id="sel1" name="tipo_busca">
 					    <option value="autor">Autor</option>
+					    <option value="titulo" selected>Titulo</option>
+					    <option value="sub_titulo">Sub-titulo</option>
+					    <option value="orientadores">Orientadores</option>
+					    
 					  </select>
 					</div>
 					<input class="form-control mr-sm-2" type="text" placeholder="Pesquisar" maxlength="150" name="busca">

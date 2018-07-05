@@ -7,7 +7,7 @@ public class Usuario  {
 	private String senha;
 	private boolean bloqueado;
 	private boolean Permicao;
-	private String descricao;
+
 	 
 	
 	public Usuario(String login, String senha) {
@@ -62,15 +62,6 @@ public class Usuario  {
 	public void setAdm(boolean permicao) {
 		Permicao = permicao;
 	}
-
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
 
 	
 }

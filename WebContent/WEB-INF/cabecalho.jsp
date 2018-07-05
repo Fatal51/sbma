@@ -32,7 +32,7 @@
 		<nav id="menu" class="navbar navbar-expand-xl row">
 
 			<header>
-				<a href="#" class="navbar-brand titulo1">SisBF</a>
+				<a href="${pageContext.request.contextPath}" class="navbar-brand titulo1">SisBF</a>
 				<button class="navbar-toggler" data-toggle="collapse"
 					data-target="#menubar">
 					<span class="fa fa-bars"></span>
@@ -46,26 +46,27 @@
 						class="nav-link px-2 mx-2 menulink text-uppercase">ifsuldeminas</a></li>
 					<li class="position-relative"><a href="#"
 						class="nav-link px-2 mx-2 menulink">Sobre</a></li>
-					<li class="position-relative"><a href="#"
-						class="nav-link px-2 mx-2 menulink">Cadastro</a></li>
-				</ul>
+					<li class="position-relative"><a href="#${usu.isAdm()?' }"
+						class="nav-link px-2 mx-2 menulink">Cadastro Usuario</a></li>
+					<li class="position-relative"><a
+						href="#" data-toggle="modal" data-target="#avancada"
+						class="nav-link px-2 mx-2 menulink text-uppercase ">Busca Avancada</a></li>
+				
+					<c:if test="${usu.isAdm()}">
 
-				<ul
-					class=" navbar-nav nav mx-xl-5 px-xl-5 mx-0 px-0 bareffect justify-content-end">
-					<c:if test="${empty usu}">
-						<li class="nav-item"><form
-								action="${pageContext.request.contextPath}/user/validation"
-								class="form-inline" method="post">
-								<div class="input-group">
-									<input type="text" placeholder="Login" class="form-control"
-										name="login" maxlength="40"> <input type="password"
-										placeholder="Senha" class="form-control" name="senha"
-										maxlength="20">
-								</div>
-								<button type="submit" class="btn btn-outline-success ml-1">Login</button>
-							</form></li>
+						<li class="nav-item position-relative float-left"><a
+							href="${pageContext.request.contextPath}/document/form"
+							class="  nav-link nav-link px-2 mx-2 menulink text-uppercase ">Cadastrar Documento</a></li>
+					
 					</c:if>
+					<c:if test="${empty usu}">
 
+						<li class="position-relative"><a
+							href="#" data-toggle="modal" data-target="#login"
+							class="nav-link px-2 mx-2 menulink text-uppercase ">Login</a></li>
+					
+					</c:if>
+					
 					<c:if test="${not empty usu}">
 
 						<li class="nav-item position-relative float-left"><a
@@ -75,7 +76,6 @@
 					</c:if>
 					
 				</ul>
-
 			</div>
 
 		</nav>
@@ -83,6 +83,3 @@
   Open modal
 </button>
 
-<a type="button" class="btn btn-primary" href="${pageContext.request.contextPath}/document/list">
-  Open modal
-</a>

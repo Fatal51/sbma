@@ -24,8 +24,7 @@ public class UsuarioDAO implements ObjectDAO<Usuario> {
 		
 		if(u.getSenha().equals(db.getString("senha"))){
 			u.setBloqueado(db.getBoolean("ativo"));
-			u.setAdm(db.getBoolean("administrador"));
-			u.setDescricao(db.getString("descricao"));
+			u.setAdm(db.getBoolean("tipo"));
 	
 			return true;
 		}

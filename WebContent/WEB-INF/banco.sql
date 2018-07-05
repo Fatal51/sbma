@@ -66,7 +66,7 @@ FOREIGN KEY (sub_area) REFERENCES sub_area(codigo)
 CREATE TABLE IF NOT EXISTS usuarios(
 
 senha VARCHAR(255) NOT NULL,
-tipo VARCHAR(10),
+tipo int not null,
 ativo boolean NOT NULL,
 email VARCHAR(50) NOT NULL,
 

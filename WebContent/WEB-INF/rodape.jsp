@@ -13,6 +13,17 @@
 	</section>
 </footer>
 
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+          // fecha o alert após 3 segundos
+          setTimeout(function() {
+              $(".alert").slideUp(500);
+          }, 2000);
+         
+      });
+    </script>
+
 </body>
 </head>
 </html>

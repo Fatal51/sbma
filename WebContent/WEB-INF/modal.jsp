@@ -11,12 +11,12 @@
 
 			<!-- Modal body -->
 			<div class="modal-body">
-				<form action="${pageContext.request.contextPath}/user/save"
+				<form action="${pageContext.request.contextPath}/user/insert"
 					method="post" onsubmit="validarSenha()">
 					<div class="container conteudo">
 						<div class="form-group">
 							<div class="row justify-content-around">
-						<input class="hidden" value="0" name="tipo_user" >
+						<input hidden value="0" name="tipo_user" >
 								<div class="col-md-6 my-1">
 									<label for="nome">Nome completo</label> <input
 										class="form-control" type="text" name="nome" id="nome" required
@@ -38,7 +38,7 @@
 								<div class="col-md-6  my-1">
 									<label for="email">E-mail</label> <input class="form-control"
 										type="email" name="email" id="email" required
-										 maxlength="20">
+										 maxlength="150">
 								</div>
 							</div>
 						</div>

@@ -30,7 +30,7 @@ public class Email {
                             }
                        });
            
-           session.setDebug(true);
+           session.setDebug(false);
            try {
  
                  Message message = new MimeMessage(session); 

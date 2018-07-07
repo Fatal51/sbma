@@ -87,7 +87,7 @@ public class UsuarioDAO {
 		
 		DBHandler db = new DBHandler();
 		
-		db.prepareStatement("update usuarios set ativo = true where login = ? ; ");
+		db.prepareStatement("update usuarios set ativo = true where email = ? ; ");
 		
 
 		db.setString(1, u.getLogin());

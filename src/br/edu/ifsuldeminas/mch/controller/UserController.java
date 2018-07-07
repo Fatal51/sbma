@@ -15,12 +15,15 @@ import br.edu.ifsuldeminas.mch.model.Usuario;
 import br.edu.ifsuldeminas.mch.model.bancoDeDados.DAOFactory;
 import br.edu.ifsuldeminas.mch.model.bancoDeDados.ModelException;
 import br.edu.ifsuldeminas.mch.model.bancoDeDados.UsuarioDAO;
+import br.edu.ifsuldeminas.mch.model.sistema.Email;
 
 
 @SuppressWarnings("serial")
 @WebServlet(urlPatterns = { "/user", "/user/form", "/user/delete", "/user/insert", "/user/update", "/user/validation",
 		"/user/logof","/user/acept" })
 public class UserController extends HttpServlet {
+	
+	private String endereco="localhost:8080/sbma/";
 
 	@Override 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -205,12 +208,17 @@ public class UserController extends HttpServlet {
 	private boolean salvaUsuario(Usuario u) {
 		
 		UsuarioDAO us = new UsuarioDAO();
+		
+		Email e = new Email();
+		
+		e.email("se cadastro precisa ser aprovado acesse o link "+endereco+"user/acept?c08cbbfd6eefc83ac6d23c4c791277e4=272e81b5ac0e7c334b01b5ea9567e44c"
+				+ "&f8032d5cae3de20fcec887f395ec9a6a="+u.getLogin(), u.getLogin(), "validação de conta");
 	
 		try {
 			return us.save(u);
-		} catch (ModelException e) {
+		} catch (ModelException s) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			s.printStackTrace();
 		}
 		
 		return false;
@@ -221,6 +229,8 @@ public class UserController extends HttpServlet {
 		Usuario us = new Usuario();
 		
 		us.setLogin(req.getParameter("f8032d5cae3de20fcec887f395ec9a6a"));
+		
+		System.out.println(req.getParameter("f8032d5cae3de20fcec887f395ec9a6a"));
 		
 		UsuarioDAO d = new UsuarioDAO();
 		

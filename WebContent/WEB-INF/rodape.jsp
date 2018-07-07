@@ -22,6 +22,19 @@
           }, 2000);
          
       });
+      
+      function validaSenha (input){ 
+    	    if (input.value != document.getElementById('senha').value) {
+    	    input.setCustomValidity('Repita a senha corretamente');
+    	    $("#senha, #senha2").addClass("border-danger");
+    	  } else {
+    	    input.setCustomValidity('');
+    	    $("#senha, #senha2").removeClass("border-danger");
+    	    $("#senha, #senha2").addClass("border-info");
+    	  }
+    	}
+     
+       
     </script>
 
 </body>

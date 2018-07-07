@@ -182,7 +182,7 @@ public class DBHandler {
 		}
 	}
 	
-	private void close() throws ModelException {
+	public void close() throws ModelException {
 		try {
 			if (preparedStatement != null)
 				preparedStatement.close();

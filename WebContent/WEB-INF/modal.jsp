@@ -12,29 +12,33 @@
 			<!-- Modal body -->
 			<div class="modal-body">
 				<form action="${pageContext.request.contextPath}/user/save"
-					method="post">
+					method="post" onsubmit="validarSenha()">
 					<div class="container conteudo">
 						<div class="form-group">
 							<div class="row justify-content-around">
-
+						<input class="hidden" value="0" name="tipo_user" >
 								<div class="col-md-6 my-1">
 									<label for="nome">Nome completo</label> <input
-										class="form-control" type="text" name="nome" id="nome">
+										class="form-control" type="text" name="nome" id="nome" required
+										maxlength="150" minlength="10">
 								</div>
 
 								<div class="col-md-6  my-1">
 									<label for="senha">senha</label> <input class="form-control"
-										type="password" name="senha" id="senha">
+										type="password" name="senha" id="senha" required
+										maxlength="20">
 								</div>
 
 								<div class="col-md-6  my-1">
 									<label for="senha2">repita senha</label> <input
-										class="form-control" type="password" name="senha2" id="senha2">
+										class="form-control" type="password" name="senha2" id="senha2" required oninput="validaSenha(this)"
+										maxlength="20">
 								</div>
 
 								<div class="col-md-6  my-1">
 									<label for="email">E-mail</label> <input class="form-control"
-										type="email" name="email" id="email">
+										type="email" name="email" id="email" required
+										 maxlength="20">
 								</div>
 							</div>
 						</div>
@@ -73,7 +77,7 @@
 			<div class="modal-body">
 				<form action="${pageContext.request.contextPath}/document/buscar"
 					method="get">
-					<input class="hidden" hidden value="avancada" name="tipo_busca" >
+					<input class="hidden" value="avancada" name="tipo_busca" >
 					<div class="container conteudo">
 						<div class="form-group">
 							<div class="row justify-content-around">
@@ -190,36 +194,41 @@
 
 			<!-- Modal Header -->
 			<div class="modal-header">
-				<h4 class="titulo1 text-dark">Cadastro de Usuario</h4>
+				<h4 class="titulo1 text-dark">Cadastro de Adiministrador</h4>
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
 
 			<!-- Modal body -->
 			<div class="modal-body">
 				<form action="${pageContext.request.contextPath}/user/save"
-					method="post">
+					method="post" >
 					<div class="container conteudo">
 						<div class="form-group">
 							<div class="row justify-content-around">
 
 								<div class="col-md-6 my-1">
 									<label for="nome">Nome completo</label> <input
-										class="form-control" type="text" name="nome" id="nome">
+										class="form-control" type="text" name="nome" id="nome" required
+										maxlength="150" minlength="10">
 								</div>
 
 								<div class="col-md-6  my-1">
 									<label for="senha">senha</label> <input class="form-control"
-										type="password" name="senha" id="senha">
+										type="password" name="senha" id="senha" required
+										maxlength="20">
 								</div>
 
 								<div class="col-md-6  my-1">
 									<label for="senha2">repita a senha</label> <input
-										class="form-control" type="password" name="senha2" id="senha2">
+										class="form-control" type="password" name="senha2" id="senha2"
+										oninput="validaSenha(this)" required
+										maxlength="20">
 								</div>
 
 								<div class="col-md-6  my-1">
 									<label for="email">E-mail</label> <input class="form-control"
-										type="email" name="email" id="email">
+										type="email" name="email" id="email" required
+										maxlength="150">
 								</div>
 							</div>
 						</div>

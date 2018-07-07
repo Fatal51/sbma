@@ -32,7 +32,8 @@
 		<nav id="menu" class="navbar navbar-expand-xl row">
 
 			<header>
-				<a href="${pageContext.request.contextPath}" class="navbar-brand titulo1">SisBF</a>
+				<a href="${pageContext.request.contextPath}"
+					class="navbar-brand titulo1">SisBF</a>
 				<button class="navbar-toggler" data-toggle="collapse"
 					data-target="#menubar">
 					<span class="fa fa-bars"></span>
@@ -46,40 +47,50 @@
 						class="nav-link px-2 mx-2 menulink text-uppercase">ifsuldeminas</a></li>
 					<li class="position-relative"><a href="#"
 						class="nav-link px-2 mx-2 menulink">Sobre</a></li>
-					<li class="position-relative"><a href="#${usu.isAdm()?' }"
-						class="nav-link px-2 mx-2 menulink">Cadastro Usuario</a></li>
-					<li class="position-relative"><a
-						href="#" data-toggle="modal" data-target="#avancada"
-						class="nav-link px-2 mx-2 menulink text-uppercase ">Busca Avancada</a></li>
-				
+
+					<c:if test="${empty usu }">
+						<li class="position-relative"><a href="#"
+							class="nav-link px-2 mx-2 menulink" data-toggle="modal"
+							data-target="#cadastroUsuario">Cadastre-se</a></li>
+					</c:if>
+
+					<c:if test="${usu.isAdm()}">
+						<li class="position-relative"><a href="#"
+							class="nav-link px-2 mx-2 menulink" data-toggle="modal"
+							data-target="#cadastroAdm">Cadastro de Adm</a></li>
+					</c:if>
+					<li class="position-relative"><a href="#" data-toggle="modal"
+						data-target="#avancada"
+						class="nav-link px-2 mx-2 menulink text-uppercase ">Busca
+							Avancada</a></li>
+
 					<c:if test="${usu.isAdm()}">
 
 						<li class="nav-item position-relative float-left"><a
 							href="${pageContext.request.contextPath}/document/form"
-							class="  nav-link nav-link px-2 mx-2 menulink text-uppercase ">Cadastrar Documento</a></li>
-					
+							class="  nav-link nav-link px-2 mx-2 menulink text-uppercase ">Cadastrar
+								Documento</a></li>
+
 					</c:if>
 					<c:if test="${empty usu}">
 
-						<li class="position-relative"><a
-							href="#" data-toggle="modal" data-target="#login"
+						<li class="position-relative"><a href="#" data-toggle="modal"
+							data-target="#login"
 							class="nav-link px-2 mx-2 menulink text-uppercase ">Login</a></li>
-					
+
 					</c:if>
-					
+
 					<c:if test="${not empty usu}">
 
 						<li class="nav-item position-relative float-left"><a
 							href="${pageContext.request.contextPath}/user/logof"
 							class="  nav-link nav-link px-2 mx-2 menulink text-uppercase ">${usu.getLogin()}</a></li>
-					
+
 					</c:if>
-					
+
 				</ul>
 			</div>
 
 		</nav>
-		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalDocumento">
-  Open modal
-</button>
-
+		<button type="button" class="btn btn-primary" data-toggle="modal"
+			data-target="#modalDocumento">Open modal</button>

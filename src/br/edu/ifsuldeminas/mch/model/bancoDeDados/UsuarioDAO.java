@@ -1,11 +1,8 @@
 package br.edu.ifsuldeminas.mch.model.bancoDeDados;
 
-import java.util.List;
-
 import br.edu.ifsuldeminas.mch.model.Usuario;
-import br.edu.ifsuldeminas.mch.model.interfaces.ObjectDAO;
 
-public class UsuarioDAO implements ObjectDAO<Usuario> {
+public class UsuarioDAO {
 	
 	public boolean validaUsuario(Usuario u) throws ModelException{
 		
@@ -36,35 +33,70 @@ public class UsuarioDAO implements ObjectDAO<Usuario> {
 		
 	}
 
-	@Override
-	public boolean save(Usuario objeto) {
+	
+	public boolean save(Usuario u) throws ModelException {
+			
+		DBHandler db = new DBHandler();
+		
+		db.prepareStatement("insert into usuarios values (?,?,?,?) ; ");
+		
+		db.setString(1,u.getSenha());
+		db.setBoolean(2, u.isAdm());
+		db.setBoolean(3, !u.isBloqueado());
+		db.setString(4, u.getLogin());
+			
+	return	db.executeUpdate() > 0;
+	
+	}
+
+	
+	public boolean delete(Usuario u) throws ModelException {
+	
+		
+		DBHandler db = new DBHandler();
+		
+		db.prepareStatement("delete from usuarios where login = ? ; ");
+	
+		db.setString(1, u.getLogin());
+			
+	return	db.executeUpdate() > 0;
+	}
+
+	
+	public boolean alter(Usuario u) throws ModelException {
+		
+	
+		
+		DBHandler db = new DBHandler();
+		
+		db.prepareStatement("update usuarios set senha = ? where login = ? ; ");
+		
+	
+		db.setString(1,u.getSenha());
+		db.setString(2, u.getLogin());
+			
+	return	db.executeUpdate() > 0;
 		
 		
-		return false;
+		
 	}
 
-	@Override
-	public boolean delete(Usuario objeto) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean confirmaCadastro(Usuario u) throws ModelException {
+		
+	
+		
+		DBHandler db = new DBHandler();
+		
+		db.prepareStatement("update usuarios set ativo = true where login = ? ; ");
+		
+
+		db.setString(1, u.getLogin());
+			
+	return	db.executeUpdate() > 0;
+		
+		
+		
 	}
 
-	@Override
-	public boolean alter(Usuario objeto) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public List<Usuario> list() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Usuario find(String name) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

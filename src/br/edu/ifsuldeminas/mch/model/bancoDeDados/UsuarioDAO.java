@@ -28,10 +28,36 @@ public class UsuarioDAO {
 		}
 		
 	}
-		
+	db.close();
 		return false;
 		
 	}
+	
+	
+	public boolean existiUsuario(Usuario u) throws ModelException{
+		
+		
+		String sql = "SELECT * FROM usuarios WHERE email = ? ; ";
+		
+		DBHandler db = new DBHandler();
+		
+		db.prepareStatement(sql);
+		
+		db.setString(1,u.getLogin());
+			
+		db.executeQuery();
+		
+		if(db.next()){
+			db.close();
+				return true;
+				
+			}
+			
+		
+		db.close();
+			return false;
+			
+		}
 
 	
 	public boolean save(Usuario u) throws ModelException {
@@ -69,7 +95,7 @@ public class UsuarioDAO {
 		
 		DBHandler db = new DBHandler();
 		
-		db.prepareStatement("update usuarios set senha = ? where login = ? ; ");
+		db.prepareStatement("update usuarios set senha = ? where email = ? ; ");
 		
 	
 		db.setString(1,u.getSenha());

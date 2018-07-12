@@ -6,35 +6,58 @@
 }
 
 :root {
-  --primaria: #6DBC51;
-  --secundaria: #35e139;
+  --primaria: #00FF00;
+  --secundaria: #fff;
   --terciaria: #000000;
   --fundo-1: #9f9d9d;
   --fundo-2: #f2f2f2;
 }
 
 
+
 body{
 	font-family: 'roboto';
-	background-color: var(--fundo-1) !important;
+	background-color: var(--fundo-2) !important;
 }
 /* menu*/
 nav#menu{
 	background-color:var(--terciaria) !important;
 }
 
-footer#rodape{
+.fundo1{
 
-	background-color:var(--terciaria) !important;
-	width: 100%;
+	background-color:var(--fundo-2) !important;
 
+}
+
+.fundo2{
+
+	background-color:var(--fundo-1) !important;
+
+}
+
+.conteudo{
+	padding-top: 6rem;
+	padding-bottom: 4rem;
+}
+
+.titulo2{
+	font-family: 'Viga',arial;
+	font-size: 3rem;
+}
+.titulo3{
+	font-family: 2rem;
+}
+/* menu*/
+nav#menu{
+	background-color: #000;
 }
 
 .titulo1{
 	font-family: 'Viga';
 	font-size: 2rem;
 	font-weight: 500;
-	color: var(--primaria) !important;
+	color: #00FF00;
 }
 
 .titulo1:hover{
@@ -60,7 +83,7 @@ footer#rodape{
 	height: 2px;
 	background-color: #fff;
 	opacity: 0;
-	transition: opacity 0.5s, transform 0.3s;
+	transition: all 0.5s;
 }
 
 .bareffect li a:hover::before,
@@ -71,17 +94,26 @@ footer#rodape{
 
 .bareffect li a::before{
 	top:0;
-	transform:translateY(10px);
+	transform: translateY(10px);
 }
 
 .bareffect li a::after{
 	bottom:0;
 	transform: translateY(-10px);
+
+}
+
+.bareffect li a:: before{
+	transform: translateY(10px);
+}
+
+.bareffect li a:: after{
+	transform: translateY(-10px);
 }
 
 input[type="search"],
 input[type="search"]:focus{
-	background-color: transparent;
+	background-color: transparent
 }
 
 input[type="search"]::placeholder{
@@ -96,23 +128,113 @@ input[type="search"]::placeholder{
 	cursor: pointer;
 }
 
-.float-left{
-	float: right;
+.jumbotron{
+	background-color: #000;
 }
 
-/*menu*/
+article#equipe{
+	background-image: url(../images/work.jpg);
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+
+article#services span.fa{
+	font-size: 3.125rem;
+	color: #fff;
+	background-color: #27ae60;
+	transition: all 0.5s;
+}
+
+article#services span.fa:houver{
+	background-color: #005223;
+}
+
+ul#paginacao{
+	padding-top: 2rem;
+}
 
 @media screen and (max-width: 1024px){
-	.bareffect li a::after,
-	.bareffect li a::before{
+	.bareffect li a:hover::before,
+	.bareffect li a:hover::after{
 		width: 25%;
+	}
+
+	article#slideshow{
+		height: 40rem;
+	}
+}
+
+article#galeria{
+	background-image: url(../images/gallery.jpg);
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-size: cover;
+	color: #fff;
+}
+
+article#galeria a{
+	margin: 0.625rem;
+	border: 0.1875rem solid #fff;
+	display: inline-block;
+	border-radius: 0.9375rem;
+	overflow: hidden;
+	transition: transform 0.5s;
+
+}
+
+article#galeria a:hover{
+	transform: scale(1.1);
+}
+
+.scrollspy{
+	height: 31.25rem;
+	overflow: auto;
+}
+
+hr{
+	width: 80%;
+}
+
+.blocos {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.countdown div span{
+	font-size: 2.5rem;
+}
+
+.contdown div p{
+	font-size: 1.25rem;
+}
+
+@media screen and (max-width: 768px){
+	article#slideshow{
+		height: 30rem;
+	}
+
+	article#galeria a{
+		width: 70%;
 	}
 }
 
 @media screen and (max-width: 576px){
-	.bareffect li a::after,
-	.bareffect li a::before{
-		width: 90%;
+	.bareffect li a:hover::before,
+	.bareffect li a:hover::after{
+		width: 50%;
+	}
+
+	article#slideshow{
+		height: 10rem;
 	}
 }
+
+@media screen and (max-width: 320px){
+	.titulo2{
+		font-size: 2rem;
+	}
+}
+
 

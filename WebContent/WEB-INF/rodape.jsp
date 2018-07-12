@@ -1,16 +1,15 @@
 
 </div>
 
-<footer id="rodape" class="container-fluid ">
+<footer id="rodape" class="container-fluid fot fundo2">
+<div class="row justify-content-around">
 
-	<section class="text-center">
-
-		<p class="text-center">
+		<p class="text-center mt-5">
 			Matheus Alisson de Oliveira - &copy; IFSULDEMINAS <i>Campus</i>
 			Machado-MG
 		</p>
+</div>
 
-	</section>
 </footer>
 
 

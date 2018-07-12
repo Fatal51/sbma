@@ -19,7 +19,7 @@ import br.edu.ifsuldeminas.mch.model.bancoDeDados.ModelException;
 
 
 @WebServlet(urlPatterns = {"/document/save","/document/update","/document/delete","/document/insert","/document/form","/document/list",
-		"/document/buscar","/document/proximo","/document/anterior","/document/pagina"})
+		"/document/buscar","/document/proximo","/document/anterior","/document/pagina","/document/cancelar"})
 @MultipartConfig
 public class DocumentoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -132,9 +132,9 @@ public class DocumentoController extends HttpServlet {
 		
 		switch (action) {
 		case "/sbma/document/form":
-			req.setAttribute("action", "save");
-			
-			ControllerUtil.redirect(res, req.getContextPath() + "/form_documento.jsp");
+			req.getSession().setAttribute("action", "save");
+			req.getSession().removeAttribute("documento");
+			ControllerUtil.forward(req, res, "/form_documento.jsp");
 		break;
 		
 		case "/sbma/document/list":
@@ -191,6 +191,7 @@ public class DocumentoController extends HttpServlet {
 		case "/sbma/document/cancelar":
 			
 			req.getSession().removeAttribute("documento");
+			req.getSession().removeAttribute("action");
 	
 			ControllerUtil.redirect(res, req.getContextPath() + "/index.jsp");
 		break;

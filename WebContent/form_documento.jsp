@@ -1,13 +1,14 @@
 <%@include file="WEB-INF/cabecalho.jsp"%>
 
 
-<h3 class="text-center" >${not empty documento ? 'Alterar':'Cadastro de'} Documento</h3>
 <form action="${pageContext.request.contextPath}/document/${action}"
 					method="post" enctype="multipart/form-data">
 					<div class="container conteudo">
+					
+<h3 class="titulo1" >${not empty documento ? 'Alterar':'Cadastro de'} Documento</h3>
 						<div class="form-group">
 							<div class="row justify-content-around">
-							<input class="hiddem" name="codigo" value="${documento.getCodigo()}">
+							<input hidden name="codigo" value="${not empty documento? documento.getCodigo() : 0}">
 								<div class="col-md-6 my-1">
 									<label for="autor">Autor</label> <input class="form-control"
 										type="text" value="${documento.getAutores()}" name="autores" id="autor">
@@ -91,7 +92,11 @@
 								<div class="col-md-6 my-1">
 									<label for="file">Documento .pdf</label> <input type="file"
 										id="file" name="documeto" class="form-control" accept=".pdf">
-										<a class="btn btn-succsess" target="_blanc" href="${pageContext.request.contextPath}/documentos/${documento.getCaminho()}" >Ver Documento atual</a>
+									<c:if test="${not empty documento}">
+										<a class="btn btn-succsess" target="_blanc"
+										 href="${pageContext.request.contextPath}/documentos/${documento.getCaminho()}" >
+									Ver Documento atual</a>
+									</c:if>
 								</div>
 
 								<div class="col-md-12 my-1">

@@ -5,7 +5,7 @@
 
 			<!-- Modal Header -->
 			<div class="modal-header">
-				<h4 class="titulo1 text-dark">Cadastro de Usuario</h4>
+				<h4 class="titulo1 text-center">Cadastro de Usuario</h4>
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
 
@@ -68,8 +68,8 @@
 		<div class="modal-content">
 
 			<!-- Modal Header -->
-			<div class="modal-header">
-				<h4 class="titulo1 text-dark">Busca Avancada</h4>
+			<div class="modal-header text-center">
+				<h4 class="titulo1 ">Busca Avancada</h4>
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
 
@@ -77,8 +77,8 @@
 			<div class="modal-body">
 				<form action="${pageContext.request.contextPath}/document/buscar"
 					method="get">
-					<input class="hidden" value="avancada" name="tipo_busca" >
-					<div class="container conteudo">
+					<input  hidden value="avancada" name="tipo_busca" >
+					<div class="container">
 						<div class="form-group">
 							<div class="row justify-content-around">
 
@@ -105,12 +105,12 @@
 										type="text" name="titulo" id="titulo">
 								</div>
 
-								<div class="col-md-9  my-1">
+								<div class="col-md-8  my-1">
 									<label for="sub">Subtitulo</label> <input class="form-control"
 										type="text" name="sub_titulo" id="sub">
 								</div>
 
-								<div class="col-md-3  my-1">
+								<div class="col-md-4  my-1">
 									<label for="">Data defesa/publicação</label> <input
 										class="form-control" type="date" name="data_defesa"
 										id="data_cadastro" value="2018-01-01">
@@ -194,7 +194,7 @@
 
 			<!-- Modal Header -->
 			<div class="modal-header">
-				<h4 class="titulo1 text-dark">Cadastro de Adiministrador</h4>
+				<h4 class="titulo1 ">Cadastro de Adiministrador</h4>
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
 
@@ -257,14 +257,14 @@
 
 			<!-- Modal Header -->
 			<div class="modal-header">
-				<h4 class="titulo1 text-dark">Login</h4>
+				<h4 class="titulo1">Login</h4>
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
 
 			<!-- Modal body -->
 			<div class="modal-body">
 
-				<div class="container conteudo">
+				<div class="container">
 					<div class="form-group">
 						<form class="form-inline" method="post"
 							action="${pageContext.request.contextPath}/user/validation">
@@ -275,6 +275,7 @@
 									maxlength="20">
 							</div>
 							<button type="submit" class="btn btn-outline-success ml-1">Login</button>
+							<a href="${pageContext.request.contextPath}/alteraSenha.jsp" class="btn btn-warning ml-1">Esqueci a senha</a>
 						</form>
 					</div>
 

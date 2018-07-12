@@ -1,6 +1,15 @@
 
 <%@include file="WEB-INF/cabecalho.jsp"%>
 
+<style>
+.fot{
+
+margin-top: 2%;
+padding-bottom: 2.5rem;
+
+}
+</style>
+
 <div id="alert"
 	style="${not empty message ? 'display: block;' : 'display: none;'}"
 	class="alert alert-dismissable ${alertType eq 1 ? 'alert-success' : 'alert-danger'}">

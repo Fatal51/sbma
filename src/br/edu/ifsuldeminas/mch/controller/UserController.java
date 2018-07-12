@@ -20,10 +20,10 @@ import br.edu.ifsuldeminas.mch.model.sistema.Email;
 
 @SuppressWarnings("serial")
 @WebServlet(urlPatterns = { "/user", "/user/form", "/user/delete", "/user/insert", "/user/update", "/user/validation",
-		"/user/logof","/user/acept" })
+		"/user/logof","/user/acept","/user/alteraSenha","/user/troca" })
 public class UserController extends HttpServlet {
 	
-	private String endereco="localhost:8080/sbma/";
+	private String endereco="http://localhost:8080/sbma/";
 
 	@Override 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -77,11 +77,67 @@ public class UserController extends HttpServlet {
 			ControllerUtil.redirect(resp, req.getContextPath() + "/index.jsp");
 			
 			break;
+			
+		case "/sbma/user/alteraSenha":
+			
+			if(req.getParameter("c08cbbfd6eefc83ac6d23c4c791277e4").equals("272e81b5ac0e7c334b01b5ea9567e44c")) {
+				if(confirmaUsuario(req)) {
+					
+					
+					req.getSession().setAttribute("autorizacao", "sim");
+					req.getSession().setAttribute("action", "troca");
+					req.getSession().setAttribute("email",req.getParameter("f8032d5cae3de20fcec887f395ec9a6a"));
+					
+					ControllerUtil.redirect(resp, req.getContextPath() + "/alteraSenha.jsp");
+				}
+				else {
+					ControllerUtil.errorMessage(req, "Endereço de email não cadastrado");
+					ControllerUtil.redirect(resp, req.getContextPath() + "/index.jsp");
+				}
+			}
 
+			
+			
+			break;
+			
+		
 		default:
+			
+			req.getSession().removeAttribute("autorizacao");
+			req.getSession().removeAttribute("email");
+			req.getSession().removeAttribute("action");
+			
+			ControllerUtil.redirect(resp, req.getContextPath() + "/index.jsp");
 			
 			break;
 		}
+	}
+
+	private boolean checaUsuario(HttpServletRequest req) {
+		
+		UsuarioDAO us = new UsuarioDAO();
+		Usuario u = new Usuario();
+		u.setLogin(req.getParameter("f8032d5cae3de20fcec887f395ec9a6a"));
+		
+		try {
+			if (us.confirmaCadastro(u)) {
+				
+				Email e = new Email();
+				
+				e.email("acesse o link para alterar sua senha "+endereco+"user/alteraSenha?c08cbbfd6eefc83ac6d23c4c791277e4=272e81b5ac0e7c334b01b5ea9567e44c"
+						+ "&f8032d5cae3de20fcec887f395ec9a6a="+u.getLogin(), u.getLogin(), "Alteração de senha");
+			
+				return true;
+			}
+
+				
+			
+		} catch (ModelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return false;
 	}
 
 	private boolean deletaUsuario(Usuario u) {
@@ -156,6 +212,38 @@ public class UserController extends HttpServlet {
 				ControllerUtil.redirect(resp, req.getContextPath() + "/index.jsp");
 				
 				break;
+				
+	       case "/sbma/user/alteraSenha":
+				
+				if(req.getParameter("c08cbbfd6eefc83ac6d23c4c791277e4").equals("272e81b5ac0e7c334b01b5ea9567e44c")) {
+					if(checaUsuario(req))
+						ControllerUtil.sucessMessage(req, "Um email foi enviado com o link para a alteraçao de sua senha !");
+					else
+						ControllerUtil.errorMessage(req, "Endereço de email não cadastrado");	
+				}
+
+				ControllerUtil.redirect(resp, req.getContextPath() + "/index.jsp");
+				
+				break;
+				
+	       case "/sbma/user/troca":
+				
+				if(req.getParameter("c08cbbfd6eefc83ac6d23c4c791277e4").equals("272e81b5ac0e7c334b01b5ea9567e44c")) {
+					if(alteraSenha(req)) {
+						ControllerUtil.sucessMessage(req, "Senha alterada com sucesso !");
+						
+						req.getSession().removeAttribute("autorizacao");
+						req.getSession().removeAttribute("email");
+						req.getSession().removeAttribute("action");
+						
+					}
+					else
+						ControllerUtil.errorMessage(req, "Não foi possival alterar sua senha");	
+				}
+
+				ControllerUtil.redirect(resp, req.getContextPath() + "/index.jsp");
+				
+				break;
 
 		default:
 
@@ -164,6 +252,24 @@ public class UserController extends HttpServlet {
 			break;
 		}
 
+	}
+
+	private boolean alteraSenha(HttpServletRequest req) {
+		UsuarioDAO us = new UsuarioDAO();
+		
+		Usuario u = new Usuario();
+		
+		u.setLogin((String)req.getSession().getAttribute("email"));
+		u.setSenha(md5(req.getParameter("senha")));
+		
+		try {
+			return us.alter(u);
+		} catch (ModelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return false;
 	}
 
 	private boolean alteraUsuario(Usuario criaUsuario) {
@@ -230,12 +336,12 @@ public class UserController extends HttpServlet {
 		
 		us.setLogin(req.getParameter("f8032d5cae3de20fcec887f395ec9a6a"));
 		
-		System.out.println(req.getParameter("f8032d5cae3de20fcec887f395ec9a6a"));
 		
 		UsuarioDAO d = new UsuarioDAO();
 		
 		try {
 			return d.confirmaCadastro(us);
+	
 		} catch (ModelException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

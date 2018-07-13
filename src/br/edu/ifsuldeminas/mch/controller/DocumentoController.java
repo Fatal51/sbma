@@ -18,7 +18,7 @@ import br.edu.ifsuldeminas.mch.model.bancoDeDados.ModelException;
 
 
 
-@WebServlet(urlPatterns = {"/document/save","/document/update","/document/delete","/document/insert","/document/form","/document/list",
+@WebServlet(urlPatterns = {"/document/save","/document/update","/document/remove","/document/insert","/document/form","/document/list",
 		"/document/buscar","/document/proximo","/document/anterior","/document/pagina","/document/cancelar"})
 @MultipartConfig
 public class DocumentoController extends HttpServlet {
@@ -196,6 +196,13 @@ public class DocumentoController extends HttpServlet {
 			ControllerUtil.redirect(res, req.getContextPath() + "/index.jsp");
 		break;
 		
+		case "/sbma/document/remove":
+			
+			removeDocumento(req);
+	
+			ControllerUtil.redirect(res, req.getContextPath() + "/index.jsp");
+		break;
+		
 		default:
 			
 			ControllerUtil.errorMessage(req, "não e possivel realizar essa acao");
@@ -207,6 +214,36 @@ public class DocumentoController extends HttpServlet {
 		
 	}
 	
+	private void removeDocumento(HttpServletRequest req) {
+		
+			
+		String salvarDocument = getServletContext().getRealPath("")  + File.separator +"documentos";
+		
+		
+		DocumentDAO d = new DocumentDAO();
+		
+		Documento antigo;
+		try {
+			antigo = d.documento(Integer.valueOf(req.getParameter("codigo")));
+			File pasta = new File(salvarDocument,antigo.getCaminho());
+			
+			if(d.delete(antigo)) {
+			pasta.delete();
+			
+			ControllerUtil.sucessMessage(req, "documento escluido com sucesso !");
+			
+			}else
+				ControllerUtil.errorMessage(req, "não foi possivel efetuar a exclusão do documento !");
+			
+			
+		} catch (NumberFormatException | ModelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+
 	private void preparaUpdate(HttpServletRequest req) {
 		
 		Documento doc=null;

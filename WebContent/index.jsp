@@ -11,14 +11,15 @@ padding-bottom: 2.5rem;
 }
 </style>
 
-
+<div class="row justify-content-around mt-5">
 <div id="alert"
 			style="${not empty message ? 'display: block;' : 'display: none;'}"
-			class="alert alert-dismissable ${alertType eq 1 ? 'alert-success' : 'alert-danger'}">
+			class="alert alert-dismissable col-5 ${alertType eq 1 ? 'alert-success' : 'alert-danger'}">
 			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 			${message}
 			<%request.getSession().removeAttribute("message");
 			  request.removeAttribute("message");%>
+ </div>
  </div>
 
 <article class="fundo1 row text-center mt-5">
@@ -42,6 +43,10 @@ padding-bottom: 2.5rem;
 					</div>
 					<input class="form-control mr-sm-2" type="text" placeholder="Pesquisar" size="50" maxlength="150" name="busca">
 					<button class="btn btn-success form-control" type="submit"><span class="fa fa-search "></span></button>
+					<a href="#" data-toggle="modal"
+						data-target="#avancada"
+						class="btn btn-warning mx-1 ">Busca
+							Avancada</a>
 				</form>
 			</div>
 		</nav>

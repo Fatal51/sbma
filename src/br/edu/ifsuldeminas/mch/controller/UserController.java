@@ -172,7 +172,10 @@ public class UserController extends HttpServlet {
 				
 				if(!((Usuario) req.getSession().getAttribute("usu")).isBloqueado()){
 					
+					 req.getSession().removeAttribute("usu");
 					ControllerUtil.errorMessage(req, "Usuario ainda bloqueado cheque seu email");
+					
+					ControllerUtil.redirect(resp, req.getContextPath() + "/index.jsp");
 					
 					return ;
 				}

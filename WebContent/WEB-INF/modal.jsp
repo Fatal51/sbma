@@ -13,7 +13,7 @@
 			<div class="modal-body">
 				<form action="${pageContext.request.contextPath}/user/insert"
 					method="post" onsubmit="validarSenha()">
-					<div class="container conteudo">
+					<div class="container mt-2">
 						<div class="form-group">
 							<div class="row justify-content-around">
 						<input hidden value="0" name="tipo_user" >
@@ -78,6 +78,7 @@
 				<form action="${pageContext.request.contextPath}/document/buscar"
 					method="get">
 					<input  hidden value="avancada" name="tipo_busca" >
+					<input  hidden value="0" name="codigo" >
 					<div class="container">
 						<div class="form-group">
 							<div class="row justify-content-around">
@@ -113,7 +114,7 @@
 								<div class="col-md-4  my-1">
 									<label for="">Data defesa/publicação</label> <input
 										class="form-control" type="date" name="data_defesa"
-										id="data_cadastro" value="2018-01-01">
+										id="data_cadastro" value="Date(0)">
 								</div>
 
 								<div class="col-md-9  my-1">
@@ -133,14 +134,14 @@
 								</div>
 								<div class="col-md-6  my-1">
 									<label for="grande_area"  >Grande Area</label> <select
-										class="form-control" required name="grande_area">
+										class="form-control"  name="grande_area">
 
 									</select>
 								</div>
 
 								<div class="col-md-6  my-1">
 									<label for="area_conhecimento">Area conhecimento</label> <select
-										class="form-control " required  name="area_conhecimento"
+										class="form-control "   name="area_conhecimento"
 										id="area_conhecimento">
 
 									</select>
@@ -149,7 +150,7 @@
 
 								<div class="col-md-6 my-1">
 									<label for="area_especifica">Area especifica</label> <select
-										class="form-control" required name="area_especifica"
+										class="form-control"  name="area_especifica"
 										id="area_especifica">
 
 									</select>
@@ -200,12 +201,12 @@
 
 			<!-- Modal body -->
 			<div class="modal-body">
-				<form action="${pageContext.request.contextPath}/user/save"
+				<form action="${pageContext.request.contextPath}/user/insert"
 					method="post" >
-					<div class="container conteudo">
+					<div class="container mt-2">
 						<div class="form-group">
 							<div class="row justify-content-around">
-
+						<input hidden value="0" name="tipo_user" >
 								<div class="col-md-6 my-1">
 									<label for="nome">Nome completo</label> <input
 										class="form-control" type="text" name="nome" id="nome" required
@@ -214,14 +215,14 @@
 
 								<div class="col-md-6  my-1">
 									<label for="senha">senha</label> <input class="form-control"
-										type="password" name="senha" id="senha" required
+										type="password" name="senha" id="senhaa" required
 										maxlength="20">
 								</div>
 
 								<div class="col-md-6  my-1">
 									<label for="senha2">repita a senha</label> <input
-										class="form-control" type="password" name="senha2" id="senha2"
-										oninput="validaSenha(this)" required
+										class="form-control" type="password" name="senha2" id="senhaa2"
+										oninput="validaSenhaA(this)" required
 										maxlength="20">
 								</div>
 
@@ -284,3 +285,34 @@
 		</div>
 	</div>
 </div>
+
+
+
+
+<div class="modal" id="deletaDocumento">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title"></h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+        <span id="menssagem"></span> ?<br>
+        <span id="autor"></span>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+          <a id="deleta" href=""class="btn btn-success">Confirmar</a>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+  

@@ -74,6 +74,8 @@ PRIMARY KEY (email)
 
 );
 
+insert into usuarios values('698d51a19d8a121ce581499d7b701668',1,1,'mateus.alison@gmail.com');
+
 insert into grande_area value(default,"teste");
 insert into area_conhecimento value(default,"teste",1);
 insert into area_especifica value(default,"teste",1);
@@ -104,7 +106,7 @@ select * from documentos where titulo LIKE '%mathe%';
 select * from documentos where sub_titulo LIKE '%mathe%' OR resumo like 'kkk';
 
 /*resumo*/
-select * from documentos where resumo LIKE '%logica%' LIMIT 0,5;
+select * from documentos where resumo LIKE '%es%' LIMIT 0,5;
 
 
 UPDATE documentos SET autores = 'teste' , titulo = 'teste' , sub_titulo = 'teste' ,

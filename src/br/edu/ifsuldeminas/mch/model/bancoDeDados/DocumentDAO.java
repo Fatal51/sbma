@@ -107,11 +107,13 @@ public class DocumentDAO {
 
 		DBHandler db = new DBHandler();
 
-		db.prepareStatement("SELECT COUNT(*) as 'registros' FROM documentos where autores LIKE '%" + autor + "%' ;");
+		
+		db.prepareStatement("SELECT COUNT(*) as 'registros' FROM documentos where autores LIKE '" + formataAutoresBusca(autor) + "' ;");
 
 		db.executeQuery();
 		
 		List<Documento> lista = new ArrayList<>();
+		
 
 		if (db.next()) {
 			this.numeroRegistros = db.getInt("registros");
@@ -240,7 +242,7 @@ public class DocumentDAO {
 		String sql2 ="";
 
 		if (!documento.getAutores().isEmpty()) {
-			sql2 += " AND autores LIKE '%" + documento.getAutores() + "%'";
+			sql2 += " AND autores LIKE '" + formataAutoresBusca(documento.getAutores())  + "'";
 		}
 		if (!documento.getOrientador().isEmpty()) {
 			sql2 += " AND orientador LIKE '%" + documento.getOrientador() + "%'";
@@ -323,6 +325,18 @@ public class DocumentDAO {
 		doc.setCodigo(db.getInt("codigo"));
 
 		return doc;
+	}
+	
+	private String formataAutoresBusca(String autor) {
+		String[] autores = autor.split(";");
+		String consulta="";
+		
+		for(String a : autores) {
+			
+			consulta+="%"+a+"%";	
+		}
+		
+		return consulta;
 	}
 
 	public int getNumeroRegistros() {

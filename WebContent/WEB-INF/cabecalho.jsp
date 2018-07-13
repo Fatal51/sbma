@@ -9,6 +9,9 @@
 <title>SisBF - Sistema de Busca IFSULDEMINAS campus Machado - MG
 </title>
 
+<link rel="icon" href="${pageContext.request.contextPath}/css/icon.png" type="image/x-icon" />
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/css/icon.png" type="image/x-icon" />
+
 <meta name="viewport" content="whidth=device-whidth, initial-scale=1">
 
 <link rel="stylesheet" type="text/css"
@@ -77,14 +80,6 @@
 						<li class="position-relative"><a href="#" data-toggle="modal"
 							data-target="#login"
 							class="nav-link px-2 mx-2 menulink text-uppercase ">Login</a></li>
-
-					</c:if>
-
-					<c:if test="${not empty usu}">
-
-						<li class="nav-item position-relative float-left"><a
-							href="${pageContext.request.contextPath}/user/logof"
-							class="  nav-link nav-link px-2 mx-2 menulink text-uppercase ">${usu.getLogin()}</a></li>
 
 					</c:if>
 

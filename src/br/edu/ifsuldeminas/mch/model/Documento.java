@@ -16,6 +16,41 @@ public class Documento {
 	private String caminho;
 	private int codigo;
 	
+	public String referencia() {
+		
+		String[] autores = this.autores.split(";");
+		
+		String referencia ="";
+		
+		if(autores.length>1) {
+			
+			for(String a : autores)
+				referencia+=formataAutor(a)+";";
+			
+		}else
+			referencia+=formataAutor(autores[0])+".";
+			
+		
+		return referencia+=" "+dataDefesa.split("-")[1]+"/"+dataDefesa.split("-")[0];
+		
+	}
+	
+	private String formataAutor(String autor) {
+		String formatado = "";
+		
+		String[] nomes =  autor.split(" ");
+		
+		formatado+=nomes[nomes.length-1].toUpperCase()+",";
+		
+		for(int a=0; a < nomes.length - 1 ;a++) {
+			if(!nomes[a].equalsIgnoreCase(""))
+				formatado+=nomes[a].toUpperCase().substring(0, 1)+".";
+		}
+		
+		return formatado;
+		
+	}
+	
 	public String getAutores() {
 		return autores;
 	}

@@ -10,35 +10,39 @@ descricao VARCHAR(30) NOT NULL,
 PRIMARY KEY (codigo)
 );
 
+select * from usuarios;
 
 CREATE TABLE IF NOT EXISTS area_conhecimento(
 
-codigo INT auto_increment,
+codigo INT not null,
+ref int not null,
 descricao VARCHAR(30) NOT NULL,
-grande_area int not null,
+ga int not null,
 
 PRIMARY KEY (codigo),
-FOREIGN key (grande_area) REFERENCES grande_area(codigo)
+FOREIGN key (ga) REFERENCES grande_area(codigo)
 );
 
 CREATE TABLE IF NOT EXISTS area_especifica(
 
-codigo INT auto_increment,
+codigo INT not null,
 descricao VARCHAR(30) NOT NULL,
-area_conhecimento int not null,
+ref int not null,
+ac int not null,
 
 PRIMARY KEY (codigo),
-FOREIGN key (area_conhecimento) REFERENCES area_conhecimento(codigo)
+FOREIGN key (ac) REFERENCES area_conhecimento(codigo)
 );
 
 CREATE TABLE IF NOT EXISTS sub_area(
 
 codigo INT auto_increment,
-descricao VARCHAR(30) NOT NULL,
-area_especifica int not null,
+ref int not null,
+descricao VARCHAR(100) NOT NULL,
+ae int not null,
 
 PRIMARY KEY (codigo),
-FOREIGN key (area_especifica) REFERENCES area_especifica(codigo)
+FOREIGN key (ae) REFERENCES area_especifica(codigo)
 );
 
 
@@ -74,62 +78,33 @@ PRIMARY KEY (email)
 
 );
 
-insert into usuarios values('698d51a19d8a121ce581499d7b701668',1,1,'mateus.alison@gmail.com');
-
-insert into grande_area value(default,"teste");
-insert into area_conhecimento value(default,"teste",1);
-insert into area_especifica value(default,"teste",1);
-insert into sub_area value(default,"teste",1);
-
-
-
-INSERT INTO documentos values (default,"Marcelo Rodrigo; Bruno Alves",NOW(),NOW(),"Agar corsini","willian","Logica nas escola publicas"
-,"",1,"sistema;Academico;Web",1,"O crescente avanço tecnológico na infraestrutura da comunicação web proporcionou a criação de sistemas on-line interativos, possibilitando uma melhor usabilidade encinar logica nas escolas publicas uso da internet e a integração de sistemas para auxiliar  em pesquisas, comunicação e interações. No que diz respeito à aprendizagem tanto presencial quanto a distância utilizando-se de mecanismos de pesquisas nas mais diversas áreas, fez com que grande parte das Universidades disponibilizassem materiais acadêmicos como: teses, artigos, dissertações, monografias e trabalhos produzidos internamente, através de sistemas online de forma  gratuita, assim como o banco de teses e dissertações da CAPES que hospeda milhares de documentos. Nesse contexto, o presente  visa a construção de um sistema web, para hospedagem e  busca de material acadêmico, produzido por docentes e discentes do Instituto Federal de Educação Ciência e Tecnologia do sul de Minas Gerais campus Machado. Para atingir esse objetivo será utilizado a linguagem de programação Java, e banco de dados MariaDB, juntamente com HTML5, Css e Javascript. Com o estudo pretende-se criar uma ferramenta que proporcione uma boa usabilidade e uma navegação rápida, de forma fácil e segura.","nome na pasta");
-
-
-select * from documentos where data_defesa <='2018-06-19';		
-
-
-/* busca por autores*/
-select * from documentos where autores LIKE '%mathe%';
-
-/* orientador    */
-select * from documentos where orientador LIKE '%corsini%';
-
-/*co orientador*/
-select * from documentos where co_orientador LIKE '%mathe%';
-
-/*titulo*/
-select * from documentos where titulo LIKE '%mathe%';
-
-/*sub titulo*/
-select * from documentos where sub_titulo LIKE '%mathe%' OR resumo like 'kkk';
-
-/*resumo*/
-select * from documentos where resumo LIKE '%es%' LIMIT 0,5;
-
-
-UPDATE documentos SET autores = 'teste' , titulo = 'teste' , sub_titulo = 'teste' ,
-orientador = 'teste' , co_orientador = 'teste' , tipo = 2 , palavras_chaves = 'teste' ,
-data_defesa = '2015-01-01' , sub_area = 1 , resumo = 'teste' , caminho = 'teste' where codigo = 3 ;
-
-
-
-
-
-SELECT * FROM documentos where autores LIKE '%mar%' limit 45,15;
-
-
-
-DELETE from documentos where codigo = 3;
-
-SELECT COUNT(*) FROM documentos  where autores LIKE '%mar%';
-
-
-
-use sbma;
-
-select * from usuarios;
-
+select * from documentos;
+INSERT INTO grande_area values (1,'Ciências Exatas e da Terra');
+INSERT INTO area_conhecimento (ga,codigo,ref,descricao)values (1,1,8,'Matemática');
+INSERT INTO area_especifica (ac,codigo,ref,descricao)values (1,1,4,'Álgebra');
+INSERT INTO sub_area (ae,codigo,ref,descricao)values (1,default,2,'Conjuntos');
+INSERT INTO sub_area (ae,codigo,ref,descricao)values (1,default,0,'Lógica Matemática');
+INSERT INTO sub_area (ae,codigo,ref,descricao)values (1,default,9,'Teoria dos Números');
+INSERT INTO sub_area (ae,codigo,ref,descricao)values (1,default,7,'Grupos de Algebra Não-Comutaviva');
+INSERT INTO sub_area (ae,codigo,ref,descricao)values (1,default,5,'Algebra Comutativa');
+INSERT INTO sub_area (ae,codigo,ref,descricao)values (1,default,3,'Geometria Algebrica');
+INSERT INTO area_especifica (ac,codigo,ref,descricao)values (1,2,0,'Análise');
+INSERT INTO sub_area (ae,codigo,ref,descricao)values (2,default,9,'Análise Complexa');
+INSERT INTO sub_area (ae,codigo,ref,descricao)values (2,default,7,'Análise Funcional');
+INSERT INTO sub_area (ae,codigo,ref,descricao)values (2,default,5,'Análise Funcional Não-Linear');
+INSERT INTO sub_area (ae,codigo,ref,descricao)values (2,default,3,'Equações Diferênciais Ordinárias');
+INSERT INTO sub_area (ae,codigo,ref,descricao)values (2,default,1,'Equações Diferênciais Parciais');
+INSERT INTO sub_area (ae,codigo,ref,descricao)values (2,default,0,'Equações Diferênciais Funcionais');
+INSERT INTO area_especifica (ac,codigo,ref,descricao)values (1,3,7,'Geometria e Topologia');
+INSERT INTO sub_area (ae,codigo,ref,descricao)values (3,default,5,'Geometria Diferêncial');
+INSERT INTO sub_area (ae,codigo,ref,descricao)values (3,default,3,'Topologia Algébrica');
+INSERT INTO sub_area (ae,codigo,ref,descricao)values (3,default,1,'Topologia das Variedades');
+INSERT INTO sub_area (ae,codigo,ref,descricao)values (3,default,0,'Sistemas Dinâmicos');
+INSERT INTO sub_area (ae,codigo,ref,descricao)values (3,default,8,'Teoria das Singularidades e Teoria das Catástrofes');
+INSERT INTO sub_area (ae,codigo,ref,descricao)values (3,default,6,'Teoria das Folheações');
+INSERT INTO area_especifica (ac,codigo,ref,descricao)values (1,4,3,'Matemática Aplicada');
+INSERT INTO sub_area (ae,codigo,ref,descricao)values (4,default,1,'Física Matemática');
+INSERT INTO sub_area (ae,codigo,ref,descricao)values (4,default,0,'Análise Numérica');
+INSERT INTO sub_area (ae,codigo,ref,descricao)values (4,default,8,'Matemática Discreta e Combinatoria');
 
 

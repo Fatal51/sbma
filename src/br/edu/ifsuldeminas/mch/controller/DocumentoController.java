@@ -319,7 +319,10 @@ public class DocumentoController extends HttpServlet {
 		doc.setSubArea(Integer.valueOf(req.getParameter("sub_area")));
 		doc.setCodigo(Integer.valueOf(req.getParameter("codigo")));
 		
+		
 		return doc;
+		
+		
 		
 	}
 	

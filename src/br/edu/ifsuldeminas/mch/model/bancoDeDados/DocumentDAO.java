@@ -274,7 +274,6 @@ public class DocumentDAO {
 
 		String sql3 = " LIMIT ? , 15 ;";
 
-
 		DBHandler db = new DBHandler();
 
 		db.prepareStatement(sql1+sql2+" ;");

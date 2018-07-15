@@ -126,6 +126,7 @@
 								<div class="col-md-3  my-1">
 									<label for="tipo">Tipo de documento</label> <select
 										class="form-control " name="tipo" id="tipo">
+										<option selected value="0"></option>
 										<option value="1">Tcc</option>
 										<option value="2">Discertações</option>
 										<option value="3">Tese</option>

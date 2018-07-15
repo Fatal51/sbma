@@ -28,7 +28,7 @@ public class Documento {
 				referencia+=formataAutor(a)+";";
 			
 		}else
-			referencia+=formataAutor(autores[0])+".";
+			referencia+=formataAutor(autores[0]);
 			
 		
 		return referencia+=" "+dataDefesa.split("-")[1]+"/"+dataDefesa.split("-")[0];
@@ -43,7 +43,7 @@ public class Documento {
 		formatado+=nomes[nomes.length-1].toUpperCase()+",";
 		
 		for(int a=0; a < nomes.length - 1 ;a++) {
-			if(!nomes[a].equalsIgnoreCase(""))
+			if(!nomes[a].equalsIgnoreCase("") && nomes[a].length()>3)
 				formatado+=nomes[a].toUpperCase().substring(0, 1)+".";
 		}
 		

@@ -28,6 +28,8 @@
 	src="${pageContext.request.contextPath}/js/popper.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
+	
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 
 </head>
 <body>

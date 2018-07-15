@@ -2,6 +2,7 @@ package br.edu.ifsuldeminas.mch.controller;
 
 import java.io.IOException;
 import java.math.BigInteger;
+import java.net.InetAddress;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -23,10 +24,14 @@ import br.edu.ifsuldeminas.mch.model.sistema.Email;
 		"/user/logof","/user/acept","/user/alteraSenha","/user/troca" })
 public class UserController extends HttpServlet {
 	
-	private String endereco="http://localhost:8080/sbma/";
+	private String endereco="";
 
 	@Override 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		
+		endereco="http://"+InetAddress.getLocalHost().getHostAddress()+":8080/sbma/";
+		
 		String action = req.getRequestURI();
 		
 		if (action == null || action.equals("")) {
@@ -35,7 +40,7 @@ public class UserController extends HttpServlet {
 		}
 		
 		switch (action) {
-		case "/Intersect/user/form":
+		case "/sbma/user/form":
 			
 
 			ControllerUtil.forward(req, resp, "/index.jsp");
@@ -158,7 +163,8 @@ public class UserController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String action = req.getRequestURI();
-
+		
+		endereco="http://"+InetAddress.getLocalHost().getHostAddress()+":8080/sbma/";
 
 		if (action == null || action.equals("")) {
 			ControllerUtil.forward(req, resp, "/index.jsp");

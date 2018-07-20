@@ -15,7 +15,7 @@ padding-bottom: 2.5rem;
 
 
 
-<select id="1" required>
+<select id="ga">
 <option disabled selected></option>
 <option value="1" >1</option>
 <option value="2">2</option>
@@ -26,13 +26,13 @@ padding-bottom: 2.5rem;
 
 
 
-<select  id="2">
+<select  id="ac">
 <option disabled selected></option>
 </select>
 
 
 
-<select id="3">
+<select id="ae">
 
 <option disabled selected></option>
 
@@ -40,6 +40,12 @@ padding-bottom: 2.5rem;
 </select>
 
 
+<select id="sa">
+
+<option disabled selected></option>
+
+
+</select>
 
 
 </div>
@@ -49,41 +55,62 @@ padding-bottom: 2.5rem;
 
 <script>
 
+$('#ga').change(function(){
+	
+	let xhr = new XMLHttpRequest();
+    xhr.open('GET', "/sbma/ac?id="+$(this).val(), true);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4) {
+            if (xhr.status = 200){
+            	$("#ac").empty();
+            	$("#ac").append(xhr.responseText);
+            }
+        }
+    }
+    xhr.send(); 		
+	
+}); 
 
+$('#ac').change(function(){
+	
+	let xhr = new XMLHttpRequest();
+    xhr.open('GET', "/sbma/ae?id="+$(this).val(), true);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4) {
+            if (xhr.status = 200){
+            	$("#ae").empty();
+            	$("#ae").append(xhr.responseText);
+            }
+        }
+    }
+    xhr.send(); 		
+	
+}); 
 
-    $('#1').change(function(){
-    	
-    	if($('#1').val()==1)
-    		funcao1();
-    	else
-    		$("#2").empty();
-    	
-    }); 
-    
- 	$('#2').change(function(){
-    	
-    	if($('#2').val()==2)
-    		funcao2();
-    	else
-    		$("#2").empty();
-    	
-    }); 
-    
-    function funcao1(){
-    	
-    	$("#2").append('<option value="2">aaaaaa</option>');
-    	
-    	
-    };
-    
-function funcao2(){
-    	
-    	$("#3").append('<option value="2">aaaaaa</option>');
-    	
-    	
-    };
-
+$('#ae').change(function(){
+	
+	let xhr = new XMLHttpRequest();
+    xhr.open('GET', "/sbma/sa?id="+$(this).val(), true);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4) {
+            if (xhr.status = 200){
+            	$("#sa").empty();
+            	if(xhr.responseText=="nada"){
+            		$('#sa').attr("disabled","");
+            		$("#sa").append('<option selected value="'+$('#ae').val()+'">Não possui sub-Area</option>');
+            	
+            	}else
+            		$('#sa').removeAttr("disabled","");
+            		$("#sa").append(xhr.responseText);
+            	
+            }
+        }
+    }
+    xhr.send(); 		
+	
+}); 
 
 </script>
 
 	<%@include file="WEB-INF/modal.jsp"%>
+<%@include file="WEB-INF/rodape.jsp"%>

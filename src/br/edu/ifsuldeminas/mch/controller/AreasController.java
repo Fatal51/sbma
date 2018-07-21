@@ -8,6 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.edu.ifsuldeminas.mch.model.AreaDoConhecimento;
+import br.edu.ifsuldeminas.mch.model.AreaEspecifica;
+import br.edu.ifsuldeminas.mch.model.SubArea;
+import br.edu.ifsuldeminas.mch.model.bancoDeDados.GrandeAreaDAO;
+import br.edu.ifsuldeminas.mch.model.bancoDeDados.ModelException;
+
 @WebServlet(urlPatterns = {"/ac","/ae","/sa"}, asyncSupported = true)
 public class AreasController extends HttpServlet {
 	
@@ -24,52 +30,69 @@ public class AreasController extends HttpServlet {
 		String action = req.getRequestURI();
 		
 		
+		GrandeAreaDAO ga = new GrandeAreaDAO();
+		
+		resp.getWriter().println("<option value=\"0\">Selecione Alguma</option>");
+		
 		switch (action) {
 		case "/sbma/ac":
 			
-			System.out.println("ac");
-			
-			resp.getWriter().println("<option value=\"3\">3</option>"
-					+ "<option value=\"4\">4</option>"
-					+ "<option value=\"5\">5</option>");
 		
+			try {
+				for(AreaDoConhecimento a : ga.areaConhecimentoList(Integer.valueOf(req.getParameter("id")))){
+				resp.getWriter().println("<option value=\""+a.getCodigo()+"\">"+a.getDescricao()+"</option>");
+				}
+			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ModelException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+			
 			break;
+			
 		case "/sbma/ae":
 			
-			System.out.println("ae");
-			
-			resp.getWriter().println("<option value=\"3\">6</option>"
-					+ "<option value=\"4\">7</option>"
-					+ "<option value=\"5\">8</option>");
-		
+
+			try {
+				for(AreaEspecifica a : ga.areaEspecificaList(Integer.valueOf(req.getParameter("id")))){
+				resp.getWriter().println("<option value=\""+a.getCodigo()+"\">"+a.getDescricao()+"</option>");
+				}
+			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ModelException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 			break;
+			
 		case "/sbma/sa":
-			
-			System.out.println("as");
-			
-			switch (req.getParameter("id")) {
-			case "5":
-				resp.getWriter().println("<option value=\"3\">9</option>"
-						+ "<option value=\"4\">10</option>"
-						+ "<option value=\"5\">11</option>");
-				break;
 
-			default:
-				resp.getWriter().print("nada");
-				break;
+			try {
+				for(SubArea a : ga.subAreaList(Integer.valueOf(req.getParameter("id")))){
+				resp.getWriter().println("<option value=\""+a.getCodigo()+"\">"+a.getDescricao()+"</option>");
+				}
+			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ModelException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 			
 		
+		break;
 			
-		
-	
-	break;
 		default:
-			break;
-		}
+		resp.getWriter().print("nada");
+		break;
 		
-		destroy();
+		}
+
 		
 	}
 	

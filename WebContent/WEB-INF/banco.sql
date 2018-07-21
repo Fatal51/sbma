@@ -58,12 +58,11 @@ titulo VARCHAR(255) NOT NULL,
 sub_titulo varchar(255),
 tipo int not null,
 palavras_chaves varchar(100) not null,
-sub_area INT NOT NULL,
+sub_area INT ,
 resumo text,
 caminho varchar(255),
 
-PRIMARY KEY (codigo),
-FOREIGN KEY (sub_area) REFERENCES sub_area(codigo)
+PRIMARY KEY (codigo)
 
 );
 
@@ -107,4 +106,11 @@ INSERT INTO sub_area (ae,codigo,ref,descricao)values (4,default,1,'Física Matem
 INSERT INTO sub_area (ae,codigo,ref,descricao)values (4,default,0,'Análise Numérica');
 INSERT INTO sub_area (ae,codigo,ref,descricao)values (4,default,8,'Matemática Discreta e Combinatoria');
 
+
+use sbma;
+select ga.codigo as 'gacodigo',ga.descricao as 'gadescricao',ac.codigo  as 'accodigo',
+ac.descricao  as 'acdescricao',ae.codigo  as 'aecodigo',ae.descricao as 'aedescricao',sa.codigo as 'sacodigo',sa.descricao as 'sadescricao' from grande_area as ga
+inner join area_conhecimento as ac on ga.codigo = ac.ga
+inner join area_especifica as ae on ac.codigo = ae.ac
+inner join sub_area as sa on sa.ae = ae.codigo where sa.codigo =8;
 

@@ -57,8 +57,64 @@
           $(".modal-body #menssagem").text("Deseja excluir o documento " + titulo);
            $(".modal-title").text("Deletar Documento");
           $("#deleta").attr( "href","${pageContext.request.contextPath}/document/remove?codigo="+codigo);
-      })
+      });
      
+      
+$('#ga').change(function(){
+	
+	let xhr = new XMLHttpRequest();
+    xhr.open('GET', "/sbma/ac?id="+$(this).val(), true);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4) {
+            if (xhr.status = 200){
+            	$("#ac").empty();
+            	$("#ac").append(xhr.responseText);
+            }
+        }
+    }
+    xhr.send(); 		
+	
+}); 
+
+$('#ac').change(function(){
+	
+	let xhr = new XMLHttpRequest();
+    xhr.open('GET', "/sbma/ae?id="+$(this).val(), true);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4) {
+            if (xhr.status = 200){
+            	$("#ae").empty();
+            	$("#ae").append(xhr.responseText);
+            }
+        }
+    }
+    xhr.send(); 		
+	
+}); 
+
+	$('#ae').change(function(){
+	
+	let xhr = new XMLHttpRequest();
+    xhr.open('GET', "/sbma/sa?id="+$(this).val(), true);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4) {
+            if (xhr.status = 200){
+            	$("#sa").empty();
+            	if(xhr.responseText=="nada"){
+            		$('#sa').attr("disabled","");
+            		$("#sa").append('<option selected value="'+$('#ae').val()+'">Não possui sub-Area</option>');
+            	
+            	}else
+            		$('#sa').removeAttr("disabled","");
+            		$("#sa").append(xhr.responseText);
+            	
+            }
+        }
+    }
+    xhr.send(); 		
+	
+}); 
+
        
     </script>
 

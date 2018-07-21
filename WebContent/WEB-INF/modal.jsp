@@ -135,15 +135,24 @@
 								</div>
 								<div class="col-md-6  my-1">
 									<label for="grande_area"  >Grande Area</label> <select
-										class="form-control"  name="grande_area">
-
+										class="form-control"  name="grande_area" id="ga">
+										<option value="0"></option>
+										<option value="1">Ciências Exatas e da Terra</option>
+										<option value="2">Ciências Biológicas</option>
+										<option value="3">Engenharias</option>
+										<option value="4">Ciências da Saúde</option>
+										<option value="5">Ciências Agrárias</option>
+										<option value="6">Ciências Sociais Aplicadas</option>
+										<option value="7">Ciências Humanas</option>
+										<option value="8">Linguística, Letras e Artes</option>
+										<option value="9">Outros</option>
 									</select>
 								</div>
 
 								<div class="col-md-6  my-1">
 									<label for="area_conhecimento">Area conhecimento</label> <select
 										class="form-control "   name="area_conhecimento"
-										id="area_conhecimento">
+										id="ac">
 
 									</select>
 								</div>
@@ -152,7 +161,7 @@
 								<div class="col-md-6 my-1">
 									<label for="area_especifica">Area especifica</label> <select
 										class="form-control"  name="area_especifica"
-										id="area_especifica">
+										id="ae">
 
 									</select>
 								</div>
@@ -160,8 +169,8 @@
 
 								<div class="col-md-6 my-1">
 									<label for="sub_area">Sub-area</label> <select
-										class="form-control " name="sub_area" id="sub_area">
-										<option value="1">Teste</option>
+										class="form-control " name="sub_area" id="sa">
+									
 									</select>
 								</div>
 

@@ -11,10 +11,14 @@ public class Documento {
 	private String sub_titulo;
 	private int tipo ;
 	private String palavrasChaves;
-	private int subArea;
+	private GrandeArea subArea;
 	private String resumo;
 	private String caminho;
 	private int codigo;
+	
+	public Documento() {
+		subArea = new GrandeArea();
+	}
 	
 	public String referencia() {
 		
@@ -105,10 +109,10 @@ public class Documento {
 	public void setPalavrasChaves(String palavrasChaves) {
 		this.palavrasChaves = palavrasChaves;
 	}
-	public int getSubArea() {
+	public GrandeArea getGrandeArea() {
 		return subArea;
 	}
-	public void setSubArea(int subArea) {
+	public void setGrandeArea(GrandeArea subArea) {
 		this.subArea = subArea;
 	}
 	public String getResumo() {

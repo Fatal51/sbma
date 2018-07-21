@@ -16,11 +16,8 @@ padding-bottom: 2.5rem;
 
 
 <select id="ga">
-<option disabled selected></option>
-<option value="1" >1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-<option value="4">4</option>
+<option disabled selected>selecione uma</option>
+<option value="1" >Ciências Exatas e da Terra</option>
 
 </select>
 

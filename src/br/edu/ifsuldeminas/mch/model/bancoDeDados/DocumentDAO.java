@@ -22,7 +22,7 @@ public class DocumentDAO {
 		db.setString(5, documento.getSubTitulo());
 		db.setInt(6, documento.getTipo());
 		db.setString(7, documento.getPalavrasChaves());
-		db.setInt(8, documento.getSubArea());
+		db.setInt(8, documento.getGrandeArea().getArea().getAreaEspecifica().getSubArea().getCodigo());
 		db.setString(9, documento.getResumo());
 		db.setString(10, documento.getCaminho());
 
@@ -45,7 +45,7 @@ public class DocumentDAO {
 		db.setString(5, documento.getSubTitulo());
 		db.setInt(6, documento.getTipo());
 		db.setString(7, documento.getPalavrasChaves());
-		db.setInt(8, documento.getSubArea());
+		db.setInt(8, documento.getGrandeArea().getArea().getAreaEspecifica().getSubArea().getCodigo());
 		db.setString(9, documento.getResumo());
 		db.setString(10, documento.getCaminho());
 		db.setInt(11, documento.getCodigo());
@@ -262,8 +262,8 @@ public class DocumentDAO {
 		if (!documento.getResumo().isEmpty()) {
 			sql2 += " AND resumo LIKE '%" + documento.getResumo() + "%'";
 		}
-		if (documento.getSubArea() != 0) {
-			sql2 += " AND sub_area = " + documento.getSubArea();
+		if (documento.getGrandeArea().getArea().getAreaEspecifica().getSubArea().getCodigo() != 0) {
+			sql2 += " AND sub_area = " + documento.getGrandeArea().getArea().getAreaEspecifica().getSubArea().getCodigo();
 		}
 		if (documento.getTipo() != 0) {
 			sql2 += " AND tipo = " + documento.getTipo();
@@ -308,7 +308,9 @@ public class DocumentDAO {
 	private Documento criaDocumento(DBHandler db) throws ModelException {
 
 		Documento doc = new Documento();
-
+		
+		GrandeAreaDAO gaDAO = new GrandeAreaDAO();
+		
 		doc.setAutores(db.getString("autores"));
 		doc.setCaminho(db.getString("caminho"));
 		doc.setCoOrientador(db.getString("co_orientador"));
@@ -318,7 +320,7 @@ public class DocumentDAO {
 		doc.setPalavrasChaves(db.getString("palavras_chaves"));
 		doc.setResumo(db.getString("resumo"));
 		doc.setSubTitulo(db.getString("sub_titulo"));
-		doc.setSubArea(db.getInt("sub_area"));
+		doc.setGrandeArea(gaDAO.findAreas(db.getInt("sub_area")));
 		doc.setTipo(db.getInt("tipo"));
 		doc.setTitulo(db.getString("titulo"));
 		doc.setCodigo(db.getInt("codigo"));

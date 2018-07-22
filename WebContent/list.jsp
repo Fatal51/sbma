@@ -38,7 +38,7 @@ padding-bottom: 2.5rem;
             data-target="#deletaDocumento"  href="#">Remove</a>
 					</c:if>
 					<c:if test="${empty usu}">
-						<a class="btn btn-danger btn-block" href="${pageContext.request.contextPath}/index.jsp#login">É necesario estar logado para visualizar o documento</a>
+						<a class="btn btn-danger btn-block" href="${pageContext.request.contextPath}/user/form">É necesario estar logado para visualizar o documento</a>
 					</c:if>
 				</div>
 			</div>

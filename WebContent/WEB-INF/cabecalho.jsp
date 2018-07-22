@@ -66,14 +66,14 @@
 					</c:if>
 					<li class="position-relative"><a href="#" data-toggle="modal"
 						data-target="#avancada"
-						class="nav-link px-2 mx-2 menulink text-uppercase ">Busca
+						class="nav-link px-2 mx-2 menulink ">Busca
 							Avancada</a></li>
 
 					<c:if test="${usu.isAdm()}">
 
 						<li class="nav-item position-relative float-left"><a
 							href="${pageContext.request.contextPath}/document/form"
-							class="  nav-link nav-link px-2 mx-2 menulink text-uppercase ">Cadastrar
+							class="  nav-link nav-link px-2 mx-2 menulink ">Cadastrar
 								Documento</a></li>
 
 					</c:if>

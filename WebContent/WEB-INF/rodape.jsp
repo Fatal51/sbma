@@ -22,11 +22,24 @@
     <script type="text/javascript">
       $(document).ready(function() {
           // fecha o alert após 3 segundos
+          
           setTimeout(function() {
+        	 
               $(".alert").slideUp(500);
           }, 5000);
          
+          var x = Math.floor((Math.random() * 6) + 1);
+  	    document.getElementById("valida").getAttributeNode("value").value = x;
+  	    document.getElementById("imgCap").getAttributeNode("src").value = "${pageContext.request.contextPath}/img/"+x+'.jpg';
+  	
+          
       });
+      
+      function novaImagem() {
+    	    var x = Math.floor((Math.random() * 6) + 1);
+    	    document.getElementById("valida").getAttributeNode("value").value = x;
+    	    document.getElementById("imgCap").getAttributeNode("src").value = "${pageContext.request.contextPath}/img/"+x+'.jpg';
+    	}
       
       function validaSenha (input){ 
     	    if (input.value != document.getElementById('senha').value) {

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import br.edu.ifsuldeminas.mch.model.Documento;
+import br.edu.ifsuldeminas.mch.model.Usuario;
 import br.edu.ifsuldeminas.mch.model.bancoDeDados.DocumentDAO;
 import br.edu.ifsuldeminas.mch.model.bancoDeDados.ModelException;
 
@@ -28,6 +29,15 @@ public class DocumentoController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
 		String action = req.getRequestURI();
+		
+		if(req.getSession().getAttribute("usu") == null || !((Usuario) req.getSession().getAttribute("usu")).isAdm()) {
+			
+			ControllerUtil.errorMessage(req, "Você não tem permição");
+			
+			ControllerUtil.redirect(res, req.getContextPath() + "/index.jsp");
+			
+			return;
+		}
 		
 		
 		
@@ -132,6 +142,17 @@ public class DocumentoController extends HttpServlet {
 		
 		switch (action) {
 		case "/sbma/document/form":
+			
+			if(req.getSession().getAttribute("usu") == null || !((Usuario) req.getSession().getAttribute("usu")).isAdm()) {
+				
+				ControllerUtil.errorMessage(req, "Você não tem permição");
+				
+				ControllerUtil.redirect(res, req.getContextPath() + "/index.jsp");
+				
+				return;
+			}
+			
+			
 			req.getSession().setAttribute("action", "save");
 			req.getSession().removeAttribute("documento");
 			ControllerUtil.forward(req, res, "/form_documento.jsp");
@@ -183,6 +204,18 @@ public class DocumentoController extends HttpServlet {
 		
 		case "/sbma/document/update":
 			
+			if(req.getSession().getAttribute("usu") == null || !((Usuario) req.getSession().getAttribute("usu")).isAdm()) {
+				
+				ControllerUtil.errorMessage(req, "Você não tem permição");
+				
+				ControllerUtil.redirect(res, req.getContextPath() + "/index.jsp");
+				
+				return;
+			}
+			
+			
+			
+			
 			preparaUpdate(req);
 	
 			ControllerUtil.redirect(res, req.getContextPath() + "/form_documento.jsp");
@@ -197,6 +230,16 @@ public class DocumentoController extends HttpServlet {
 		break;
 		
 		case "/sbma/document/remove":
+			
+			if(req.getSession().getAttribute("usu") == null || !((Usuario) req.getSession().getAttribute("usu")).isAdm()) {
+				
+				ControllerUtil.errorMessage(req, "Você não tem permição");
+				
+				ControllerUtil.redirect(res, req.getContextPath() + "/index.jsp");
+				
+				return;
+			}
+			
 			
 			removeDocumento(req);
 	

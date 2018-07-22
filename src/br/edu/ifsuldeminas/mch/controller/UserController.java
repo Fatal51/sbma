@@ -41,8 +41,7 @@ public class UserController extends HttpServlet {
 		
 		switch (action) {
 		case "/sbma/user/form":
-			
-
+		
 			ControllerUtil.forward(req, resp, "/index.jsp");
 
 			break;
@@ -200,6 +199,14 @@ public class UserController extends HttpServlet {
 			
 	       case "/sbma/user/insert":
 			
+	    	if(!validaRequisicao(req)) {
+	    		
+	    		ControllerUtil.errorMessage(req, "erro na operacao com os valores");
+				
+				ControllerUtil.redirect(resp, req.getContextPath() + "/index.jsp");
+	    		
+	    		return;
+	    	}
 			
 			if(salvaUsuario(criaUsuario(req)))
 				ControllerUtil.sucessMessage(req, "usuario cadastrado, clique no link que foi enviado ao seu email");
@@ -261,6 +268,20 @@ public class UserController extends HttpServlet {
 			break;
 		}
 
+	}
+
+	private boolean validaRequisicao(HttpServletRequest req) {
+		
+		
+		if(req.getParameter("valida").isEmpty())
+			return false;
+		
+		
+		
+		
+		
+		
+		return false;
 	}
 
 	private boolean alteraSenha(HttpServletRequest req) {

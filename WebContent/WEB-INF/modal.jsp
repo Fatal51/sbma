@@ -42,8 +42,8 @@
 								</div>
 								<div class="col-sm-12 my-1 row justify-content-around">
 								<img width="150" height="60" class="col-12" alt="" src="" id="imgCap">
-								<input class="form-control col-4 my-1" type="text" name="valor" id="valor" placeholder="resultado da operação">
-								<input type="text" hidden id="valida" name="valida" value="">
+								<input class="form-control col-4 my-1" type="number" name="valor" id="valor" placeholder="resultado da operação">
+								<input type="text" hidden="" id="valida" name="valida" value="">
 								<input type="button" class="btn btn-danger col-3  my-1" value="nova imagem" onclick="novaImagem()">
 								</div>
 							</div>

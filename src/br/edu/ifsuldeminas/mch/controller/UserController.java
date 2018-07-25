@@ -5,6 +5,8 @@ import java.math.BigInteger;
 import java.net.InetAddress;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,13 +26,11 @@ import br.edu.ifsuldeminas.mch.model.sistema.Email;
 		"/user/logof","/user/acept","/user/alteraSenha","/user/troca" })
 public class UserController extends HttpServlet {
 	
-	private String endereco="";
+	private String endereco="http://fatal51.tplinkdns.com/sbma/";
 
 	@Override 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		
-		endereco="http://"+InetAddress.getLocalHost().getHostAddress()+":8080/sbma/";
 		
 		String action = req.getRequestURI();
 		
@@ -163,7 +163,6 @@ public class UserController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String action = req.getRequestURI();
 		
-		endereco="http://"+InetAddress.getLocalHost().getHostAddress()+":8080/sbma/";
 
 		if (action == null || action.equals("")) {
 			ControllerUtil.forward(req, resp, "/index.jsp");
@@ -272,16 +271,25 @@ public class UserController extends HttpServlet {
 
 	private boolean validaRequisicao(HttpServletRequest req) {
 		
+		List<Integer> resultados = new ArrayList<>();
+		resultados.add(25);
+		resultados.add(5);
+		resultados.add(9);
+		resultados.add(10);
+		resultados.add(12);
+		resultados.add(14);
 		
-		if(req.getParameter("valida").isEmpty())
+
+		if(req.getParameter("valida").isEmpty() || req.getParameter("valor").isEmpty())
+			return false;
+		
+		
+		else if(Integer.valueOf(req.getParameter("valor")) != resultados.get(Integer.valueOf(req.getParameter("valida")) - 1))
 			return false;
 		
 		
 		
-		
-		
-		
-		return false;
+		return true;
 	}
 
 	private boolean alteraSenha(HttpServletRequest req) {

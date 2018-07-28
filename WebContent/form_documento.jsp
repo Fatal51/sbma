@@ -11,13 +11,13 @@
 							<input hidden name="codigo" value="${not empty documento? documento.getCodigo() : 0}">
 								<div class="col-md-6 my-1">
 									<label for="autor">Autor</label> <input class="form-control"
-										type="text" value="${documento.getAutores()}" name="autores" id="autor">
+										type="text" required value="${documento.getAutores()}" name="autores" id="autor">
 								</div>
 
 								<div class="col-md-6  my-1">
 									<label for="orientador">Orientador</label> <input
 										class="form-control" type="text" name="orientador"
-										id="orientador" value="${documento.getOrientador()}">
+										id="orientador" required value="${documento.getOrientador()}">
 								</div>
 
 								<div class="col-md-6  my-1">
@@ -28,7 +28,7 @@
 
 								<div class="col-md-6  my-1">
 									<label for="titulo">Titulo</label> <input class="form-control"
-										type="text" name="titulo" id="titulo" value="${documento.getTitulo()}">
+										type="text" required name="titulo" id="titulo" value="${documento.getTitulo()}">
 								</div>
 
 								<div class="col-md-9  my-1">
@@ -39,12 +39,12 @@
 								<div class="col-md-3  my-1">
 									<label for="">Data defesa/publicação</label> <input
 										class="form-control" type="date" name="data_defesa"
-										id="data_cadastro" value="${documento.getDataDefesa()}">
+										id="data_cadastro" required value="${documento.getDataDefesa()}">
 								</div>
 
 								<div class="col-md-9  my-1">
 									<label for="palavras_chaves">Palavras chaves</label> <input
-										class="form-control" type="text" value="${documento.getPalavrasChaves()}" name="palavras_chaves"
+										class="form-control" required type="text" value="${documento.getPalavrasChaves()}" name="palavras_chaves"
 										id="palavras_chaves">
 								</div>
 
@@ -58,7 +58,7 @@
 									</select>
 								</div>
 								<div class="col-md-6  my-1">
-									<label for="grande_area">Grande Area</label> <select
+									<label for="grande_area">Grande Area</label> <select required
 										class="form-control" name="grande_area" id="ga">
 										<option value="0"></option>
 										<c:if test="${not empty documento}"><option selected value="${documento.getGrandeArea().getCodigo()}">${documento.getGrandeArea().getDescricao()}<option></c:if>
@@ -76,7 +76,7 @@
 								</div>
 
 								<div class="col-md-6  my-1">
-									<label for="area_conhecimento">Area conhecimento</label> <select
+									<label for="area_conhecimento">Area conhecimento</label> <select required
 										class="form-control " name="area_conhecimento"
 										id="ac">
 
@@ -88,7 +88,7 @@
 
 
 								<div class="col-md-6 my-1">
-									<label for="area_especifica">Area especifica</label> <select
+									<label for="area_especifica">Area especifica</label> <select required
 										class="form-control" name="area_especifica"
 										id="ae">
 							
@@ -99,7 +99,7 @@
 
 
 								<div class="col-md-6 my-1">
-									<label for="sub_area">Sub-area</label> <select
+									<label for="sub_area">Sub-area</label> <select required
 										class="form-control " name="sub_area" id="sa">										
 										<c:if test="${not empty documento}"><option selected value="${documento.getGrandeArea().getArea().getAreaEspecifica().getSubArea().getCodigo()}">${documento.getGrandeArea().getArea().getAreaEspecifica().getSubArea().getDescricao()}<option></c:if>										
 										</select>
@@ -107,7 +107,7 @@
 
 								<div class="col-md-6 my-1">
 									<label for="file">Documento .pdf</label> <input type="file"
-										id="file" name="documeto" class="form-control" accept=".pdf">
+										id="file" name="documeto" ${empty documento?'required':''} class="form-control" accept=".pdf">
 									<c:if test="${not empty documento}">
 										<a class="btn btn-succsess" target="_blanc"
 										 href="${pageContext.request.contextPath}/documentos/${documento.getCaminho()}" >
@@ -117,7 +117,7 @@
 
 								<div class="col-md-12 my-1">
 									<label for="resumo">Resumo</label>
-									<textarea class="form-control" id="redumo" name="resumo">${documento.getResumo()} </textarea>
+									<textarea class="form-control" id="redumo" required name="resumo">${documento.getResumo()} </textarea>
 								</div>
 							</div>
 						</div>

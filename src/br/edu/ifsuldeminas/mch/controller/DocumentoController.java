@@ -359,7 +359,7 @@ public class DocumentoController extends HttpServlet {
 		doc.setSubTitulo(req.getParameter("sub_titulo"));
 		doc.setTipo(Integer.valueOf(req.getParameter("tipo")));
 		doc.setTitulo(req.getParameter("titulo"));
-		doc.getGrandeArea().getArea().getAreaEspecifica().getSubArea().setCodigo(Integer.valueOf(req.getParameter("sub_area")));
+		doc.getGrandeArea().getArea().getAreaEspecifica().getSubArea().setCodigo(Integer.valueOf(req.getParameter("sub_area")==null?"0":req.getParameter("sub_area")));
 		doc.setCodigo(Integer.valueOf(req.getParameter("codigo")));
 		
 		return doc;

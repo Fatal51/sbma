@@ -10,7 +10,7 @@
 							<div class="row justify-content-around">
 							<input hidden name="codigo" value="${not empty documento? documento.getCodigo() : 0}">
 								<div class="col-md-6 my-1">
-									<label for="autor">Autor</label> <input class="form-control"
+									<label for="autor">Autor</label> <input class="form-control" placeholder="separe os autores com  ; caso houver mais de um."
 										type="text" required value="${documento.getAutores()}" name="autores" id="autor">
 								</div>
 
@@ -44,7 +44,7 @@
 
 								<div class="col-md-9  my-1">
 									<label for="palavras_chaves">Palavras chaves</label> <input
-										class="form-control" required type="text" value="${documento.getPalavrasChaves()}" name="palavras_chaves"
+										class="form-control" required placeholder="separe as palavras chaves com ; " type="text" value="${documento.getPalavrasChaves()}" name="palavras_chaves"
 										id="palavras_chaves">
 								</div>
 
@@ -106,7 +106,7 @@
 								</div>
 
 								<div class="col-md-6 my-1">
-									<label for="file">Documento .pdf</label> <input type="file"
+									<label for="file">Documento .pdf</label> <input type="file" placeholder="arquivos com no maximo 50 Mb, e formato pdf "
 										id="file" name="documeto" ${empty documento?'required':''} class="form-control" accept=".pdf">
 									<c:if test="${not empty documento}">
 										<a class="btn btn-succsess" target="_blanc"
@@ -123,9 +123,9 @@
 						</div>
 						<input type="submit" value="${not empty documento ? 'alterar':'salvar'}"
 							class="btn btn-success btn-sm col-md-2 form-control"> 
-							<a type="${not empty documento ? '':'rest'}" href="${not empty documento ? '/sbma/document/cancelar':'#'}"
-							class="btn btn-danger btn-sm col-md-2 form-control">${not empty documento ? 'Cancelar':'limpar'}</a>
+							<a href="${not empty documento ? '/sbma/document/cancelar':'/sbma/'}"
+							class="btn btn-danger btn-sm col-md-2 form-control">${not empty documento ? 'Cancelar':'Voltar a Home'}</a>
 					</div>
 				</form>
-				
+						
 <%@include file="WEB-INF/rodape.jsp"%>

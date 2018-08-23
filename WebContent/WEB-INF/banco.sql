@@ -385,14 +385,16 @@ INSERT INTO sub_area (ae,codigo,ref,descricao)values (37,default,7,'Geofísica M
 
 
 
+INSERT INTO grande_area values (2,'Ciências Biológicas');
+
+INSERT INTO area_conhecimento (ga,codigo,ref,descricao)values (2,9,5,'Biologia Geral');
+INSERT INTO area_especifica (ac,codigo,ref,descricao)values (9,38,9,'Biologia Geral');
+INSERT INTO sub_area (ae,codigo,ref,descricao)values (38,default,7,'Biologia Geral');
 
 
 
 
-
-
-
-INSERT INTO area_conhecimento (ga,codigo,ref,descricao)values (1,4,5,'');
+INSERT INTO area_conhecimento (ga,codigo,ref,descricao)values (2,9,5,'');
 INSERT INTO area_especifica (ac,codigo,ref,descricao)values (2,6,9,'');
 INSERT INTO sub_area (ae,codigo,ref,descricao)values (6,default,7,'');
 

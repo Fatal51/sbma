@@ -330,6 +330,10 @@ public class DocumentoController extends HttpServlet {
 			Part arquivo;
 			try {
 				arquivo = req.getPart("documeto");
+				if(arquivo.getSize() > 50*1024*1024){
+					docDao.delete(doc);
+					return false;
+				}
 				arquivo.write(salvarDocument + File.separator + doc.getCaminho());
 				
 				return true;

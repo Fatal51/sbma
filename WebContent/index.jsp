@@ -41,8 +41,8 @@ padding-bottom: 2.5rem;
 					    
 					  </select>
 					</div>
-					<input class="form-control mr-sm-2" type="text" placeholder="Pesquisar" size="50" maxlength="150" name="busca">
-					<button class="btn btn-success form-control" type="submit"><span class="fa fa-search "></span></button>
+					<input class="form-control mr-sm-2 sm-11" type="text" placeholder="Pesquisar" size="50" maxlength="150" name="busca">
+					<button class="btn btn-success form-control sm-11" type="submit"><span class="fa fa-search "></span></button>
 					<a href="#" data-toggle="modal"
 						data-target="#avancada"
 						class="btn btn-warning mx-1 ">Busca

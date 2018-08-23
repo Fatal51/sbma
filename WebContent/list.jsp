@@ -33,12 +33,13 @@ padding-bottom: 2.5rem;
 						<a target="_blanck" class="btn btn-success btn-block" href="${pageContext.request.contextPath}/documentos/${t.getCaminho()}">Ver</a>
 					</c:if>
 					<c:if test="${usu.isAdm()}">
-						<a  class="btn btn-warning btn-block" href="${pageContext.request.contextPath}/document/update?id=${t.getCodigo()}">Auterar</a>
+						<a  class="btn btn-warning btn-block" href="${pageContext.request.contextPath}/document/update?id=${t.getCodigo()}">Alterar</a>
 						<a  class="btn btn-danger btn-block modal-remove" codigo="${t.getCodigo()}" data-toggle="modal" 
             data-target="#deletaDocumento"  href="#">Remove</a>
 					</c:if>
 					<c:if test="${empty usu}">
-						<a class="btn btn-danger btn-block" href="${pageContext.request.contextPath}/user/form">É necesario estar logado para visualizar o documento</a>
+						<a class="btn btn-danger btn-block" href="#" data-toggle="modal"
+							data-target="#login">É necesario estar logado para visualizar o documento</a>
 					</c:if>
 				</div>
 			</div>

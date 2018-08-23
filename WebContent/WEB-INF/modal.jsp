@@ -24,14 +24,14 @@
 								</div>
 
 								<div class="col-md-6  my-1">
-									<label for="senha">senha</label> <input class="form-control"
+									<label for="senha">senha</label> <input class="form-control" placeholder="Senha de 6 a 8 caracteres"
 										type="password" name="senha" id="senha" required
 										maxlength="20">
 								</div>
 
 								<div class="col-md-6  my-1">
 									<label for="senha2">repita senha</label> <input
-										class="form-control" type="password" name="senha2" id="senha2" required oninput="validaSenha(this)"
+										class="form-control" type="password" name="senha2" id="senha2" placeholder="repita novamente a senha" required oninput="validaSenha(this)"
 										maxlength="20">
 								</div>
 
@@ -41,9 +41,11 @@
 										 maxlength="150">
 								</div>
 								<div class="col-sm-12 my-1 row justify-content-around">
+								<label class="col-12 my-2 text-center">Confirme que você não é um robo!</label>
 								<img width="150" height="60" class="col-12" alt="" src="" id="imgCap">
+									<input type="text" hidden="" id="valida" name="valida" value="">
+								
 								<input class="form-control col-4 my-1" type="number" name="valor" id="valor" placeholder="resultado da operação">
-								<input type="text" hidden="" id="valida" name="valida" value="">
 								<input type="button" class="btn btn-danger col-3  my-1" value="nova imagem" onclick="novaImagem()">
 								</div>
 							</div>
@@ -91,19 +93,19 @@
 
 								<div class="col-md-6 my-1">
 									<label for="autor">Autor</label> <input class="form-control"
-										type="text" name="autores"
+										type="text" name="autores" placeholder="mais de um Autor separe por ; ex: 'oliveira;fernandes'"
 										id="autor">
 								</div>
 
 								<div class="col-md-6  my-1">
 									<label for="orientador">Orientador</label> <input
-										class="form-control" type="text" name="orientador"
+										class="form-control" type="text" name="orientador" placeholder="entre com nome o sobrenome do orientador"
 										id="orientador">
 								</div>
 
 								<div class="col-md-6  my-1">
-									<label for="co_orientador">Co-orientador</label> <input
-										class="form-control" type="text" name="co_orientador"
+									<label for="co_orientador">Coorientador</label> <input
+										class="form-control" type="text" name="co_orientador" placeholder="entre com nome o sobrenome do coorientador"
 										id="co_orientador">
 								</div>
 
@@ -139,6 +141,11 @@
 										<option value="4">Artigo</option>
 									</select>
 								</div>
+								<div class="col-12 my-1">
+									
+									<h3 class="text-center">Caso pesquisar por area do conhecimento selecione os quatro campos abaixo</h3>
+								
+								</div>
 								<div class="col-md-6  my-1">
 									<label for="grande_area"  >Grande Area</label> <select
 										class="form-control"  name="grande_area" id="ga">
@@ -156,7 +163,7 @@
 								</div>
 
 								<div class="col-md-6  my-1">
-									<label for="area_conhecimento">Area conhecimento</label> <select
+									<label for="area_conhecimento">Area conhecimento</label> <select 
 										class="form-control "   name="area_conhecimento"
 										id="ac">
 
@@ -165,7 +172,7 @@
 
 
 								<div class="col-md-6 my-1">
-									<label for="area_especifica">Area especifica</label> <select
+									<label for="area_especifica">Area especifica</label> <select 
 										class="form-control"  name="area_especifica"
 										id="ae">
 
@@ -174,7 +181,7 @@
 
 
 								<div class="col-md-6 my-1">
-									<label for="sub_area">Sub-area</label> <select
+									<label for="sub_area">Sub-area</label> <select 
 										class="form-control " name="sub_area" id="sa">
 									
 									</select>
@@ -194,12 +201,6 @@
 				</form>
 
 			</div>
-
-			<!-- Modal footer -->
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-			</div>
-
 		</div>
 	</div>
 </div>
@@ -258,11 +259,6 @@
 
 			</div>
 
-			<!-- Modal footer -->
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-			</div>
-
 		</div>
 	</div>
 </div>
@@ -286,7 +282,7 @@
 						<form class="form-inline" method="post"
 							action="${pageContext.request.contextPath}/user/validation">
 							<div class="input-group">
-								<input type="text" placeholder="Login" class="form-control"
+								<input type="text" placeholder="Entre com seu email" class="form-control" 
 									name="login" maxlength="40"> <input type="password"
 									placeholder="Senha" class="form-control" name="senha"
 									maxlength="20">

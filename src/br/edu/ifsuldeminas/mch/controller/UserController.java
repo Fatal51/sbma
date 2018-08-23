@@ -23,7 +23,7 @@ import br.edu.ifsuldeminas.mch.model.sistema.Email;
 
 @SuppressWarnings("serial")
 @WebServlet(urlPatterns = { "/user", "/user/form", "/user/delete", "/user/insert", "/user/update", "/user/validation",
-		"/user/logof","/user/acept","/user/alteraSenha","/user/troca" })
+		"/user/logof","/user/acept","/user/alteraSenha","/user/troca","/user/altera" })
 public class UserController extends HttpServlet {
 	
 	private String endereco="http://fatal51.tplinkdns.com/sbma/";
@@ -104,6 +104,31 @@ public class UserController extends HttpServlet {
 			
 			break;
 			
+			
+		case "/sbma/user/altera":
+			
+			if(req.getSession().getAttribute("usu") != null) {
+				
+				if(checaUserToSession(req)) {
+					
+					
+					req.getSession().setAttribute("autorizacao", "sim");
+					req.getSession().setAttribute("action", "troca");
+					
+					
+					ControllerUtil.redirect(resp, req.getContextPath() + "/alteraSenha.jsp");
+					
+				}
+				else {
+					ControllerUtil.errorMessage(req, "Você precisa estar Logado");
+					ControllerUtil.redirect(resp, req.getContextPath() + "/index.jsp");
+				}
+			}
+
+			
+			
+			break;
+			
 		
 		default:
 			
@@ -115,6 +140,8 @@ public class UserController extends HttpServlet {
 			
 			break;
 		}
+		
+	
 	}
 
 	private boolean checaUsuario(HttpServletRequest req) {
@@ -210,7 +237,7 @@ public class UserController extends HttpServlet {
 			if(salvaUsuario(criaUsuario(req)))
 				ControllerUtil.sucessMessage(req, "usuario cadastrado, clique no link que foi enviado ao seu email");
 			else
-				ControllerUtil.errorMessage(req, "erro ao cadastrar usuario");
+				ControllerUtil.errorMessage(req, "usuario já cadastrado");
 			
 			ControllerUtil.redirect(resp, req.getContextPath() + "/index.jsp");
 			
@@ -252,8 +279,13 @@ public class UserController extends HttpServlet {
 						req.getSession().removeAttribute("action");
 						
 					}
-					else
+					else {
+						req.getSession().removeAttribute("autorizacao");
+						req.getSession().removeAttribute("email");
+						req.getSession().removeAttribute("action");
+						
 						ControllerUtil.errorMessage(req, "Não foi possival alterar sua senha");	
+					}
 				}
 
 				ControllerUtil.redirect(resp, req.getContextPath() + "/index.jsp");
@@ -296,6 +328,22 @@ public class UserController extends HttpServlet {
 		UsuarioDAO us = new UsuarioDAO();
 		
 		Usuario u = new Usuario();
+		
+		if(req.getSession().getAttribute("usu") != null) {
+			
+			u = (Usuario) req.getSession().getAttribute("usu");
+			
+			u.setSenha(md5(req.getParameter("senha")));
+			
+			try {
+				return us.alter(u);
+			} catch (ModelException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			return false;
+		}
 		
 		u.setLogin((String)req.getSession().getAttribute("email"));
 		u.setSenha(md5(req.getParameter("senha")));
@@ -349,17 +397,46 @@ public class UserController extends HttpServlet {
 		return false;
 	}
 	
-	private boolean salvaUsuario(Usuario u) {
+	private boolean checaUserToSession(HttpServletRequest req) {
 		
 		UsuarioDAO us = new UsuarioDAO();
 		
-		Email e = new Email();
+		Usuario usu = (Usuario) req.getSession().getAttribute("usu");
 		
-		e.email("se cadastro precisa ser aprovado acesse o link "+endereco+"user/acept?c08cbbfd6eefc83ac6d23c4c791277e4=272e81b5ac0e7c334b01b5ea9567e44c"
-				+ "&f8032d5cae3de20fcec887f395ec9a6a="+u.getLogin(), u.getLogin(), "validação de conta");
-	
+		if(usu == null)
+			return false;
+		
 		try {
-			return us.save(u);
+			return us.confirmaCadastro(usu);
+		} catch (ModelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		
+		return false;
+	}
+	
+	private boolean salvaUsuario(Usuario u) {
+		
+		UsuarioDAO us = new UsuarioDAO();
+
+	
+		
+		try {
+			
+			
+			
+			if (us.save(u)) {
+				
+				Email e = new Email();
+				
+				e.email("se cadastro precisa ser aprovado acesse o link "+endereco+"user/acept?c08cbbfd6eefc83ac6d23c4c791277e4=272e81b5ac0e7c334b01b5ea9567e44c"
+						+ "&f8032d5cae3de20fcec887f395ec9a6a="+u.getLogin(), u.getLogin(), "validação de conta");
+				
+				return true;
+			}
+			return false;
+			
 		} catch (ModelException s) {
 			// TODO Auto-generated catch block
 			s.printStackTrace();

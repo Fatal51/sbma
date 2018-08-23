@@ -26,7 +26,7 @@
           setTimeout(function() {
         	 
               $(".alert").slideUp(500);
-          }, 5000);
+          }, 30000);
          
           var x = Math.floor((Math.random() * 6) + 1);
   	    document.getElementById("valida").getAttributeNode("value").value = x;

@@ -75,13 +75,21 @@
 							href="${pageContext.request.contextPath}/document/form"
 							class="  nav-link nav-link px-2 mx-2 menulink ">Cadastrar
 								Documento</a></li>
+								
+					  <li class="nav-item dropdown position-relative float-left">
+					    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-user-o menulink" aria-hidden="true"></i></a>
+					    <div class="dropdown-menu">
+					      <a class="dropdown-item" href="${pageContext.request.contextPath}/user/altera">Alterar Senha</a>
+					      <a class="dropdown-item" href="${pageContext.request.contextPath}/user/logof">Sair</a>
+					    </div>
+					  </li>
 
 					</c:if>
 					<c:if test="${empty usu}">
 
 						<li class="position-relative"><a href="#" data-toggle="modal"
 							data-target="#login"
-							class="nav-link px-2 mx-2 menulink text-uppercase ">Login</a></li>
+							class="nav-link px-2 mx-2 menulink">Login</a></li>
 
 					</c:if>
 

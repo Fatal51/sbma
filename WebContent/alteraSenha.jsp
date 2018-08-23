@@ -26,7 +26,7 @@ padding-bottom: 2.5rem;
 									placeholder="digite a senha novamente" class="form-control" name="senha2" id="senha2" required oninput="validaSenha(this)"
 									maxlength="20">
 							</div>
-							<button type="submit" class="btn btn-outline-success ml-1">Login</button>
+							<button type="submit" class="btn btn-outline-success ml-1">Confirmar senha</button>
 							
 			</form>
 			

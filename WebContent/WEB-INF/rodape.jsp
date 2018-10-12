@@ -1,7 +1,7 @@
 
 </div>
 
-<footer id="rodape" class="container-fluid fot fundo2">
+<footer id="rodape" class="container-fluid fot fundo2" style="margin-bottom:0px">
 <div class="row justify-content-around ">
 
 <div class="mt-5">

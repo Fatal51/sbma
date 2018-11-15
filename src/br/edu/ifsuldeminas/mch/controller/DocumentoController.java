@@ -19,7 +19,7 @@ import br.edu.ifsuldeminas.mch.model.bancoDeDados.ModelException;
 
 
 
-@WebServlet(urlPatterns = {"/document/save","/document/update","/document/remove","/document/insert","/document/form","/document/list",
+@WebServlet(urlPatterns = {"/document/save","/document/update","/document/remove","/document/insert","/document/form",
 		"/document/buscar","/document/proximo","/document/anterior","/document/pagina","/document/cancelar"})
 @MultipartConfig
 public class DocumentoController extends HttpServlet {
@@ -158,16 +158,6 @@ public class DocumentoController extends HttpServlet {
 			ControllerUtil.forward(req, res, "/form_documento.jsp");
 		break;
 		
-		case "/sbma/document/list":
-			DocumentDAO docs = new DocumentDAO();
-			try {
-				req.getSession().setAttribute("documentos",docs.documentos(0));
-			} catch (ModelException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			ControllerUtil.redirect(res, req.getContextPath() + "/list.jsp");
-		break;
 		
 		case "/sbma/document/buscar":
 			

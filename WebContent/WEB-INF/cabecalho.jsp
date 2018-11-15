@@ -48,9 +48,10 @@
 			<div id="menubar" class="navbar-collapse collapse ">
 				<ul
 					class="navbar-nav nav mx-xl-5 px-xl-5 mx-0 px-0 bareffect justify-content-center">
-					<li class="position-relative"><a href="#"
+					<li class="position-relative"><a href="https://www.mch.ifsuldeminas.edu.br/"
 						class="nav-link px-2 mx-2 menulink text-uppercase">ifsuldeminas</a></li>
-					<li class="position-relative"><a href="#"
+					<li class="position-relative"><a href="#" data-toggle="modal"
+							data-target="#sobre"
 						class="nav-link px-2 mx-2 menulink">Sobre</a></li>
 
 					<c:if test="${empty usu }">

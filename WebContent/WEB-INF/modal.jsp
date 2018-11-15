@@ -59,11 +59,6 @@
 
 			</div>
 
-			<!-- Modal footer -->
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-			</div>
-
 		</div>
 	</div>
 </div>
@@ -111,12 +106,12 @@
 
 								<div class="col-md-6  my-1">
 									<label for="titulo">Titulo</label> <input class="form-control"
-										type="text" name="titulo" id="titulo">
+										type="text" name="titulo" id="titulo" placeholder="entre com o titulo">
 								</div>
 
 								<div class="col-md-8  my-1">
 									<label for="sub">Subtitulo</label> <input class="form-control"
-										type="text" name="sub_titulo" id="sub">
+										type="text" name="sub_titulo" id="sub" placeholder="entre com o subtitulo">
 								</div>
 
 								<div class="col-md-4  my-1">
@@ -128,7 +123,7 @@
 								<div class="col-md-9  my-1">
 									<label for="palavras_chaves">Palavras chaves</label> <input
 										class="form-control" type="text" name="palavras_chaves"
-										id="palavras_chaves">
+										id="palavras_chaves" placeholder="separe as palavras chaves com ;">
 								</div>
 
 								<div class="col-md-3  my-1">
@@ -143,7 +138,7 @@
 								</div>
 								<div class="col-12 my-1">
 									
-									<h3 class="text-center">Caso pesquisar por area do conhecimento selecione os quatro campos abaixo</h3>
+									<h5 class="text-center text-danger">Caso pesquisar por area do conhecimento selecione os quatro campos abaixo</h5>
 								
 								</div>
 								<div class="col-md-6  my-1">
@@ -326,5 +321,36 @@
       </div>
     </div>
   </div>
+  
+  
+  
+  <div class="modal fade" id="sobre">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+
+			<!-- Modal Header -->
+			<div class="modal-header">
+				<h4 class="titulo1 ">Sobre</h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+
+			<!-- Modal body -->
+			<div class="modal-body text-justif">
+				
+				<p>
+				
+					Plataforma desenvolvida como forma de pesquisa, atravez da elaboração de um trabalho de comclusão do curso 
+					de Licenciatura em Computação, do graduando Matheus Alisson de Oliveira, a ideia da plataforma surgiu 
+					analizando que a instituição não possuia tal ferramenta de auxilio a pesquisa, de material academico produzido 
+					internamente na instituição. 
+				
+				
+				</p>
+
+			</div>
+
+		</div>
+	</div>
+</div>
   
   

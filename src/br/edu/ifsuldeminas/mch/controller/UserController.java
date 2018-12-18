@@ -26,7 +26,7 @@ import br.edu.ifsuldeminas.mch.model.sistema.Email;
 		"/user/logof","/user/acept","/user/alteraSenha","/user/troca","/user/altera" })
 public class UserController extends HttpServlet {
 	
-	private String endereco="http://fatal51.tplinkdns.com/sbma/";
+	private String endereco="http://localhost/sbma/";
 
 	@Override 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -430,7 +430,7 @@ public class UserController extends HttpServlet {
 				
 				Email e = new Email();
 				
-				e.email("se cadastro precisa ser aprovado acesse o link "+endereco+"user/acept?c08cbbfd6eefc83ac6d23c4c791277e4=272e81b5ac0e7c334b01b5ea9567e44c"
+				e.email("seu cadastro precisa ser validado acesse o link "+endereco+"user/acept?c08cbbfd6eefc83ac6d23c4c791277e4=272e81b5ac0e7c334b01b5ea9567e44c"
 						+ "&f8032d5cae3de20fcec887f395ec9a6a="+u.getLogin(), u.getLogin(), "validação de conta");
 				
 				return true;

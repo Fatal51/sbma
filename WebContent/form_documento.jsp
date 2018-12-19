@@ -70,7 +70,7 @@
 										<option value="6">Ciências Sociais Aplicadas</option>
 										<option value="7">Ciências Humanas</option>
 										<option value="8">Linguística, Letras e Artes</option>
-										<option value="9">Outros</option>
+										
 
 									</select>
 								</div>
